@@ -109,7 +109,7 @@ class _chatsystemState extends State<chatsystem> {
             ?
         Center(
           child: Container(
-            width: size.width*0.9,
+
             height: size.height*0.1,
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(30)),
@@ -132,14 +132,14 @@ class _chatsystemState extends State<chatsystem> {
         Container(
           color: Colors.transparent,
           height: size.height*0.92,
-          width: size.width,
+
           child: ListView.builder(
             scrollDirection: Axis.vertical,
             itemCount: usermodel["Message_channels"].length,
             itemBuilder: (context, index) {
               return SizedBox(
                 height: size.height*0.1,
-                width: size.width,
+
                 child: StreamBuilder(
                     stream: FirebaseFirestore.instance.collection("Messages").doc(usermodel["Message_channels"][index]).snapshots(),
                     builder: (context, snapshot) {

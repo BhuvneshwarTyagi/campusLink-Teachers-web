@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:campus_link_teachers/Screens/Notes/quizquestion.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -8,7 +7,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter_inapp_notifications/flutter_inapp_notifications.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
@@ -125,7 +123,7 @@ class _QuizState extends State<Quiz> {
                                     type: FileType.custom,
                                     allowedExtensions: ['pdf'],
                                     allowMultiple: false).then((value) {
-                                  if(value!.files[0].path!.isNotEmpty && (value!.files[0].extension=="pdf" || value!.files[0].extension=="docx")) {
+                                  if(value!.files[0].path!.isNotEmpty && (value.files[0].extension=="pdf" || value.files[0].extension=="docx")) {
                                     filePath = value;
                                     print(".......PickedFile${filePath
                                         ?.files[0].path}");
@@ -134,7 +132,7 @@ class _QuizState extends State<Quiz> {
                                     });
                                   }
                                   else{
-                                    print("Extension is : ${value!.files[0].extension}");
+                                    print("Extension is : ${value.files[0].extension}");
                                     setState(() {
                                       fileSelected=false;
                                     });
@@ -291,7 +289,7 @@ class _QuizState extends State<Quiz> {
                              TaskSnapshot snap= await channel.putFile(File("${filePath?.files[0].path}"));
                              String pdfURL=await snap.ref.getDownloadURL();
 
-                             print("......File Uploaded ${pdfURL}");
+                             print("......File Uploaded $pdfURL");
                              Directory? directory = await getApplicationSupportDirectory();
                              String additionalPath= "/Notes";
                              directory = Directory("${directory.path}$additionalPath");
@@ -485,11 +483,11 @@ class _QuizState extends State<Quiz> {
                                tokens.add(studentsDoc.docs[i].data()["Token"]);
                              }
                              for(int i=0;i<tokens.length;i++ ){
-                               database().sendPushMessage(tokens[i], "$subject_filter Notes ${notesCount+1} uploaded,Quiz DeadLine: ${deadline}","$subject_filter Notes ${notesCount+1}", false, "", stamp);
+                               database().sendPushMessage(tokens[i], "$subject_filter Notes ${notesCount+1} uploaded,Quiz DeadLine: $deadline","$subject_filter Notes ${notesCount+1}", false, "", stamp);
                                await FirebaseFirestore.instance.collection("Students").doc(emails[i]).update({
                                  "Notifications" : FieldValue.arrayUnion([{
                                    "title" : "$subject_filter notes ${notesCount+1} quiz.",
-                                   'body' : 'Your $subject_filter notes ${notesCount+1} quiz is pending. Please complete your quiz as soon as possible.\nDeadline: ${deadline}'
+                                   'body' : 'Your $subject_filter notes ${notesCount+1} quiz is pending. Please complete your quiz as soon as possible.\nDeadline: $deadline'
                                  }])
                                });
                              }

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../Constraints.dart';
-import 'Chat_tiles/PdfViewer.dart';
 import 'onlinepdfviwer.dart';
 
 class ViewAssignment extends StatefulWidget {

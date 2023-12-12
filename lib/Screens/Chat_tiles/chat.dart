@@ -4,11 +4,9 @@ import 'package:chatview/chatview.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import '../../Constraints.dart';
 import '../../Database/database.dart';
 import '../loadingscreen.dart';
-import 'Sending_Media.dart';
 import 'chat_info.dart';
 import 'chat_list.dart';
 
@@ -329,7 +327,7 @@ class _ChatPageState extends State<ChatPage> {
                   ),
                   sendMessageConfig: SendMessageConfiguration(
                     closeIconColor: const Color.fromRGBO(3, 178, 183, 1),
-                    imagePickerConfiguration: ImagePickerConfiguration(),
+                    imagePickerConfiguration: const ImagePickerConfiguration(),
                     imagePickerIconsConfig: const ImagePickerIconsConfiguration(
                       cameraIconColor: Color.fromRGBO(3, 178, 183, 1),
                       galleryIconColor: Color.fromRGBO(3, 178, 183, 1),
@@ -372,9 +370,9 @@ class _ChatPageState extends State<ChatPage> {
                           decoration: TextDecoration.underline,
                         ),
                         //proxyUrl: "Proxy URL", // Need for web
-                        backgroundColor: Color(0xff272336),
-                        bodyStyle: TextStyle(color: Colors.white),
-                        titleStyle: TextStyle(color: Colors.white),
+                        backgroundColor: const Color(0xff272336),
+                        bodyStyle: const TextStyle(color: Colors.white),
+                        titleStyle: const TextStyle(color: Colors.white),
                       ),
                       color: const Color.fromRGBO(3, 178, 183, 1),
                       borderRadius: const BorderRadius.only(
@@ -398,9 +396,9 @@ class _ChatPageState extends State<ChatPage> {
                             decoration: TextDecoration.underline,
                           ),
                           proxyUrl: "Proxy URL", // Need for web
-                          backgroundColor: Color(0xff272336),
-                          bodyStyle: TextStyle(color: Colors.white),
-                          titleStyle: TextStyle(color: Colors.white),
+                          backgroundColor: const Color(0xff272336),
+                          bodyStyle: const TextStyle(color: Colors.white),
+                          titleStyle: const TextStyle(color: Colors.white),
                         ),
                         color: const Color.fromRGBO(221, 227, 239, 1),
                         senderNameTextStyle: GoogleFonts.aBeeZee(
@@ -1991,7 +1989,7 @@ class _ChatPageState extends State<ChatPage> {
         .collection("Messages")
         .doc(widget.channel)
         .update(
-      {
+      { "LastEdit":stamp,
         "Messages": FieldValue
             .arrayUnion([
               {
@@ -2020,7 +2018,7 @@ class _ChatPageState extends State<ChatPage> {
                 print("............error1");
                 if(member != usermodel["Email"] && !user["Active"] && user["Mute Notification"] != false){
                   for (var token in tokens) {
-                    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${token}");
+                    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>$token");
                     database().sendPushMessage(
                         token,
                         message,

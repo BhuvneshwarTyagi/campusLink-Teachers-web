@@ -1,4 +1,3 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:campus_link_teachers/Registration/signUp.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -30,7 +29,7 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     Size size=MediaQuery.of(context).size;
     return Scaffold(
-        body: Container(
+        body: SizedBox(
           height: size.height,
           width: size.width,
 
@@ -47,13 +46,13 @@ class _SignInScreenState extends State<SignInScreen> {
                     color: Colors.blueAccent.withOpacity(0.5),
                     spreadRadius: 0.5,
                     blurRadius: 2,
-                    offset: Offset(0, 3), // changes position of shadow
+                    offset: const Offset(0, 3), // changes position of shadow
                   ),
                   BoxShadow(
                     color: Colors.black26.withOpacity(0.5),
                     spreadRadius: 0.5,
                     blurRadius: 4,
-                    offset: Offset(0, -4), // changes position of shadow
+                    offset: const Offset(0, -4), // changes position of shadow
                   ),
                 ],
               ),
@@ -68,7 +67,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       height:size.height*0.05,
                     ),
 
-                    Container(
+                    SizedBox(
                       height:size.height*0.1,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -144,7 +143,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       enableSuggestions: true,
                       autocorrect: true,
                       cursorColor: Colors.black,
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.zero,
                           suffixIcon: IconButton(
@@ -212,7 +211,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       enableSuggestions: false,
                       autocorrect: false,
                       cursorColor: Colors.black,
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
                           contentPadding: EdgeInsets.zero,
                           suffixIcon: hide
@@ -276,7 +275,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                   fontSize: MediaQuery.of(context).size.width * 0.01,
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
-                                  shadows: [
+                                  shadows: const [
                                     Shadow(
                                         blurRadius: 30,
                                         offset: Offset(3, 3),
@@ -301,7 +300,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     shape:OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
                     child: ListTile(
                       dense:true,
-                      contentPadding: EdgeInsets.symmetric(vertical:0),
+                      contentPadding: const EdgeInsets.symmetric(vertical:0),
                       shape: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30)),
                       tileColor: Colors.black,
@@ -423,7 +422,7 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               child: ListTile(
                 dense: true,
-                contentPadding: EdgeInsets.symmetric(vertical:0),
+                contentPadding: const EdgeInsets.symmetric(vertical:0),
                 onTap: () {
                   Navigator.pushReplacement(
                     context,
@@ -441,7 +440,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       fontSize: MediaQuery.of(context).size.width * 0.008,
                       color: Colors.black54,
                       fontWeight: FontWeight.bold,
-                      shadows: [
+                      shadows: const [
                         Shadow(
                             blurRadius: 30,
                             offset: Offset(3, 3),

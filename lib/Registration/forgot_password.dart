@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter_inapp_notifications/flutter_inapp_notifications.dart';
 import 'package:page_transition/page_transition.dart';
 import '../Constraints.dart';
@@ -40,18 +39,18 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   color: Colors.blueAccent.withOpacity(0.5),
                   spreadRadius: 0.5,
                   blurRadius: 2,
-                  offset: Offset(0, 3), // changes position of shadow
+                  offset: const Offset(0, 3), // changes position of shadow
                 ),
                 BoxShadow(
                   color: Colors.black26.withOpacity(0.5),
                   spreadRadius: 0.5,
                   blurRadius: 4,
-                  offset: Offset(0, -4), // changes position of shadow
+                  offset: const Offset(0, -4), // changes position of shadow
                 ),
               ],
             ),
             child: Card(
-              shadowColor: Color.fromARGB(255, 255, 255, 255),
+              shadowColor: const Color.fromARGB(255, 255, 255, 255),
               elevation:30,
               color: Colors.white,
               child: Column(
@@ -59,7 +58,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   SizedBox(
                     height:size.height * 0.05,
                   ),
-                  Container(
+                  SizedBox(
                     height:size.height*0.1,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -106,7 +105,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       "Forgot your password?",
                       style:TextStyle(fontSize: MediaQuery.of(context).size.width*0.018,
                         fontWeight:FontWeight.w900,
-                        color:Color.fromARGB(255, 9, 30, 48),
+                        color:const Color.fromARGB(255, 9, 30, 48),
                       )
                   ),
                   SizedBox(
@@ -147,10 +146,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             width:size.width*0.3,
                             height: size.height*0.06,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(5),),
+                              borderRadius: const BorderRadius.all(Radius.circular(5),),
                               border: Border.all(color: Colors.black,),
 
-                              boxShadow: [
+                              boxShadow: const [
                                 BoxShadow(
                                     blurRadius: 20,
 
@@ -228,9 +227,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       shape: OutlineInputBorder( borderRadius: BorderRadius.circular(30)),
                       child: ListTile(
                         dense:true,
-                        contentPadding: EdgeInsets.symmetric(vertical:0),
+                        contentPadding: const EdgeInsets.symmetric(vertical:0),
                         shape: OutlineInputBorder( borderRadius: BorderRadius.circular(30)),
-                        tileColor: Color.fromARGB(255, 9, 30, 48),
+                        tileColor: const Color.fromARGB(255, 9, 30, 48),
                       onTap: () async{
                         if (_key.currentState!.validate())
                         {

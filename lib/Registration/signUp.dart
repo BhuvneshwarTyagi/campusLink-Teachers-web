@@ -1,4 +1,3 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -43,13 +42,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     color: Colors.blueAccent.withOpacity(0.5),
                     spreadRadius: 0.5,
                     blurRadius: 2,
-                    offset: Offset(0, 3), // changes position of shadow
+                    offset: const Offset(0, 3), // changes position of shadow
                   ),
                   BoxShadow(
                     color: Colors.black26.withOpacity(0.5),
                     spreadRadius: 0.5,
                     blurRadius: 4,
-                    offset: Offset(0, -4), // changes position of shadow
+                    offset: const Offset(0, -4), // changes position of shadow
                   ),
                 ],
               ),
@@ -145,7 +144,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               enableSuggestions: true,
                               autocorrect: true,
                               cursorColor: Colors.black,
-                              style: TextStyle(color: Colors.black),
+                              style: const TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                   contentPadding: EdgeInsets.zero,
                                   suffixIcon: IconButton(
@@ -278,9 +277,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             shape: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
                             child: ListTile(
                               dense: true,
-                              contentPadding: EdgeInsets.symmetric(vertical:0),
+                              contentPadding: const EdgeInsets.symmetric(vertical:0),
                               shape: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
-                              tileColor: Color.fromARGB(255, 5, 22, 44),
+                              tileColor: const Color.fromARGB(255, 5, 22, 44),
                               onTap: () async{
                                 if(email.text.trim().isNotEmpty){
                                   String temp = await signIn(email.text.trim(), password.text.trim());

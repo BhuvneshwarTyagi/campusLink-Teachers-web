@@ -84,6 +84,7 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver{
       debugPrint(e.toString());
     }
   }
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return WillPopScope(
@@ -733,7 +734,7 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver{
               if(selectedChoice[count]!="")
               {
                 var totalMinutes=minute+(_start/60)+((milliSecond/1000)/60);
-                print(".............total Minutes:${totalMinutes}");
+                print(".............total Minutes:$totalMinutes");
                 if(snap.data()?["Notes-${widget.notesId}"]["Question-${count + 1}"]["Answer"]==selectedOption[optionIndex])
                 {
                   score+=1;

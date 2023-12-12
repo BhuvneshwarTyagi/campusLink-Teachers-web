@@ -852,58 +852,58 @@ class _basicDetailsState extends State<basicDetails> {
 
                         data= await ref.get();
 
-                        List<dynamic> university_list= data.data()!["University"];
-                        int uni_index =university_list.indexOf(universityController.text.trim());
+                        List<dynamic> universityList= data.data()!["University"];
+                        int uniIndex =universityList.indexOf(universityController.text.trim());
 
                         await ref
                             .update(
                           {
-                            "College-$uni_index": FieldValue.arrayUnion([clgController.text.trim()]),
+                            "College-$uniIndex": FieldValue.arrayUnion([clgController.text.trim()]),
                           },
                         );
                         data= await ref.get();
-                        List<dynamic> clg_list=data.data()!["College-$uni_index"];
-                        int clg_index =clg_list.indexOf(clgController.text.trim());
+                        List<dynamic> clgList=data.data()!["College-$uniIndex"];
+                        int clgIndex =clgList.indexOf(clgController.text.trim());
                         await ref
                             .update(
                           {
-                            "Course-$uni_index$clg_index": FieldValue.arrayUnion([courseController.text.trim()]),
+                            "Course-$uniIndex$clgIndex": FieldValue.arrayUnion([courseController.text.trim()]),
                           },
                         );
                         data= await ref.get();
-                        List<dynamic> course_list=data.data()!["Course-$uni_index$clg_index"];
-                        int course_index =course_list.indexOf(courseController.text.trim());
+                        List<dynamic> courseList=data.data()!["Course-$uniIndex$clgIndex"];
+                        int courseIndex =courseList.indexOf(courseController.text.trim());
                         await ref
                             .update(
                           {
-                            "Branch-$uni_index$clg_index$course_index": FieldValue.arrayUnion([branchController.text.trim()]),
+                            "Branch-$uniIndex$clgIndex$courseIndex": FieldValue.arrayUnion([branchController.text.trim()]),
                           },
                         );
                         data= await ref.get();
-                        List<dynamic> branch_list=data.data()!["Branch-$uni_index$clg_index$course_index"];
-                        int branch_index =branch_list.indexOf(branchController.text.trim());
+                        List<dynamic> branchList=data.data()!["Branch-$uniIndex$clgIndex$courseIndex"];
+                        int branchIndex =branchList.indexOf(branchController.text.trim());
                         await ref
                             .update(
                           {
-                            "Year-$uni_index$clg_index$course_index$branch_index": FieldValue.arrayUnion([yearController.text.trim()]),
+                            "Year-$uniIndex$clgIndex$courseIndex$branchIndex": FieldValue.arrayUnion([yearController.text.trim()]),
                           },
                         );
                         data= await ref.get();
-                        List<dynamic> year_list=data.data()!["Year-$uni_index$clg_index$course_index$branch_index"];
-                        int year_index =year_list.indexOf(yearController.text.trim());
+                        List<dynamic> yearList=data.data()!["Year-$uniIndex$clgIndex$courseIndex$branchIndex"];
+                        int yearIndex =yearList.indexOf(yearController.text.trim());
                         await ref
                             .update(
                           {
-                            "Section-$uni_index$clg_index$course_index$branch_index$year_index": FieldValue.arrayUnion([secController.text.trim()]),
+                            "Section-$uniIndex$clgIndex$courseIndex$branchIndex$yearIndex": FieldValue.arrayUnion([secController.text.trim()]),
                           },
                         );
                         data= await ref.get();
-                        List<dynamic> section_list=data.data()!["Section-$uni_index$clg_index$course_index$branch_index$year_index"];
-                        int section_index =section_list.indexOf(secController.text.trim());
+                        List<dynamic> sectionList=data.data()!["Section-$uniIndex$clgIndex$courseIndex$branchIndex$yearIndex"];
+                        int sectionIndex =sectionList.indexOf(secController.text.trim());
                         await ref
                             .update(
                           {
-                            "Subject-$uni_index$clg_index$course_index$branch_index$year_index$section_index": FieldValue.arrayUnion([subjectController.text.trim()]),
+                            "Subject-$uniIndex$clgIndex$courseIndex$branchIndex$yearIndex$sectionIndex": FieldValue.arrayUnion([subjectController.text.trim()]),
                           },
                         ).whenComplete((){
                           InAppNotifications.instance

@@ -16,7 +16,7 @@ class ReplyTile extends StatelessWidget {
     Size size=MediaQuery.of(context).size;
     return InkWell(
       onTap: () {
-        print("..........${replyIndex}");
+        print("..........$replyIndex");
         scrollController.scrollTo(index: scrollindex, duration: const Duration(seconds: 1));
       },
       child: Column(

@@ -1,11 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:campus_link_teachers/Database/database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../Constraints.dart';
-import 'Attendance.dart';
 
 class SelectedStudents extends StatefulWidget {
   const SelectedStudents({Key? key}) : super(key: key);

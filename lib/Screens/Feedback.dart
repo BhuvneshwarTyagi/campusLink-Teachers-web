@@ -348,7 +348,7 @@ class _FeedBackState extends State<FeedBack> {
     for(int i=0; i< responseSnapshot.data()?["Feedback"].length;i++){
       optionResponse.add(responseSnapshot.data()!["Feedback"][i]['Question $questionno']);
     }
-   print("isduhg inusghi hadsgh sdlgn${optionResponse}");
+   print("isduhg inusghi hadsgh sdlgn$optionResponse");
     occurance.clear();
     for(int i=0; i < optionResponse.length;i++){
       occurance[optionResponse[i]] = occurance[optionResponse[i]]==null ? 1 : occurance[optionResponse[i]]! + 1;

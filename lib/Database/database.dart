@@ -41,7 +41,7 @@ class database {
   }
 
   Future<String?> email() async {
-    return await FirebaseAuth.instance.currentUser?.email;
+    return FirebaseAuth.instance.currentUser?.email;
   }
 
   Future<void> getloc() async {

@@ -300,15 +300,15 @@ class _VideoTileState extends State<VideoTile> {
       await directory.create();
     }
 
-    File _videoPath = File("${directory.path}/${widget.stamp}.mp4");
+    File videoPath = File("${directory.path}/${widget.stamp}.mp4");
 
     await dio.download(
       widget.videoURL,
-      _videoPath.path,
+      videoPath.path,
       onReceiveProgress: (count, total) {
         if (count == total) {
           setState(() {
-            videoPlayerController = VideoPlayerController.file(_videoPath);
+            videoPlayerController = VideoPlayerController.file(videoPath);
             videoPlayerController.initialize().then((value) {
               if (mounted) {
                 setState(() {
@@ -316,7 +316,7 @@ class _VideoTileState extends State<VideoTile> {
                 });
               }
             });
-            videoPath = _videoPath;
+            videoPath = videoPath;
             x = 0;
             y = 0;
             downloadedVideo = true;

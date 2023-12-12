@@ -271,7 +271,7 @@ class _AssignmentSectionState extends State<AssignmentSection> {
                                                       border: Border.all(
                                                           color: Colors.black, width: 1)
                                                   ),
-                                                  child: SubmitButton(index: index,snapshot: snapshot),
+                                                  child: SubmitButton(index: index,snapshot: snapshot, count: snapshot.data!.data()?["Assignment-${index+1}"]["Submitted-by"],),
                                                 )
 
 

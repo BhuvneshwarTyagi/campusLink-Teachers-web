@@ -1,9 +1,7 @@
 
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter/material.dart';
 class Notes extends StatefulWidget {
   const Notes({super.key});
 
@@ -42,12 +40,12 @@ class _Notes extends State<Notes> {
         child: Column(
 
           children: [
-            Container(
+            SizedBox(
               height: size.height*0.175,
 
 
               child: ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   scrollDirection:Axis.horizontal ,
                   itemBuilder: (context,index){
                 return Padding(
@@ -70,9 +68,9 @@ class _Notes extends State<Notes> {
                               ),
                             ),
                           child: CircleAvatar(
-                            child: AutoSizeText(Subject[index].substring(0,1),style: GoogleFonts.exo(fontSize:size.height*0.05,color:Colors.black),),
                             backgroundColor:Colors.black54,
                             radius: size.width*0.09,
+                            child: AutoSizeText(Subject[index].substring(0,1),style: GoogleFonts.exo(fontSize:size.height*0.05,color:Colors.black),),
                           ),
                         ),
                         AutoSizeText(Subject[index],textAlign:TextAlign.center,style: GoogleFonts.exo(fontSize:size.height*0.03,color:Colors.black, ),),
@@ -117,7 +115,7 @@ class _Notes extends State<Notes> {
                   AnimatedContainer(
                     height: isExpanded ? size.height*0.3 :size.height*0.15,
                     width:size.width*0.98,
-                    duration: Duration(milliseconds: 1),
+                    duration: const Duration(milliseconds: 1),
                     decoration: BoxDecoration(
                         color: Colors.lightBlue,
                         borderRadius: radiusGeomentry
@@ -159,7 +157,7 @@ class _Notes extends State<Notes> {
                         ),
                        isExpanded? Padding(
                          padding: EdgeInsets.only(top: size.height*0.048),
-                         child: Container(
+                         child: SizedBox(
                             width: size.width*0.98,
                             child: ListTile(
                               title: AutoSizeText('Take Quiz',style: GoogleFonts.exo(fontSize: size.height*0.038,color: Colors.black,fontWeight: FontWeight.w500),),
@@ -174,7 +172,7 @@ class _Notes extends State<Notes> {
                               ),
                             ),
                           ),
-                       ):SizedBox(),
+                       ):const SizedBox(),
                       ],
                     ),
                   ),

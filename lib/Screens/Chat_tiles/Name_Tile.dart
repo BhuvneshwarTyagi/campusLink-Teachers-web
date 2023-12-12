@@ -39,7 +39,7 @@ class NameTile extends StatelessWidget {
                 actions: [
                   Column(
                     children: [
-                      snapshot.data!.data()?["${email.split("@")[0]}"]["Mute"] != true && snapshot.data!.data()?["Admins"].contains("${usermodel["Email"]}")
+                      snapshot.data!.data()?[email.split("@")[0]]["Mute"] != true && snapshot.data!.data()?["Admins"].contains("${usermodel["Email"]}")
                           ? Container(
                               width: size.width * 0.7,
                               height: size.height * 0.05,
@@ -211,7 +211,7 @@ class NameTile extends StatelessWidget {
                                   usermodel["Email"].toString().split("@")[0] : map2,
                                   "image_URL" : "null",
                                   "CreatedOn": {"Date" : stamp, "Name": usermodel["Name"]},
-                                  "Members" : [{"Name": usermodel["Name"], "Post" :"Teachers","Email" : usermodel["Email"]},{"Email" : email,"Name": name, "Post" : snapshot.data!.data()!["${email.split("@")[0]}"]["Post"]}]
+                                  "Members" : [{"Name": usermodel["Name"], "Post" :"Teachers","Email" : usermodel["Email"]},{"Email" : email,"Name": name, "Post" : snapshot.data!.data()![email.split("@")[0]]["Post"]}]
                                 })
                                     .whenComplete(() async {
                                       Navigator.pop(context);

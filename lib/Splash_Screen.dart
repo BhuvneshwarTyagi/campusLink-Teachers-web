@@ -4,7 +4,6 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'Connection.dart';
-import 'Database/database.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);

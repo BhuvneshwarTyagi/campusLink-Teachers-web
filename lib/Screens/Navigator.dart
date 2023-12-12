@@ -6,9 +6,7 @@ import 'package:campus_link_teachers/Screens/loadingscreen.dart';
 import 'package:campus_link_teachers/push_notification/helper_notification.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:campus_link_teachers/Constraints.dart';
@@ -69,10 +67,10 @@ class _NeviState extends State<Nevi>  {
           .where("Subject", arrayContains: subject_filter)
           .get()
           .then((value) {
-        value.docs.forEach((element) {
+        for (var element in value.docs) {
           sendPushMessage(element.data()['Token'], "Attendance Initialized",
               subject_filter);
-        });
+        }
       });
     });
   }
@@ -198,7 +196,7 @@ class _NeviState extends State<Nevi>  {
           ],
           iconTheme: const IconThemeData(color: Colors.black),
           backgroundColor: Colors.black38,
-          title: Container(
+          title: SizedBox(
                 width: size.width*0.56,
             child: Stack(
               children: [
@@ -556,37 +554,24 @@ class _NeviState extends State<Nevi>  {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
 
-           Container(
+           SizedBox(
         height: size.height*0.8,
-        width: size.width*0.18,
+        width: size.width*0.14,
         child: ListView(
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: [
-            UserAccountsDrawerHeader(
-                decoration: const BoxDecoration(
-                color: Colors.transparent
-                ),
-                accountName: AutoSizeText(
-                  usermodel["Name"],
-                  style: GoogleFonts.exo(
-                    color: Colors.black54,
-                      fontSize: size.height * 0.022,
-                      fontWeight: FontWeight.w600),
-                ),
-                accountEmail: AutoSizeText(
-                  usermodel["Email"],
-                  style: GoogleFonts.exo(
-                    color: Colors.black54,
-                      fontSize: size.height * 0.02,
-                      fontWeight: FontWeight.w600),
-                ),
-                currentAccountPicture:Stack(
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: size.height*0.02,),
+                Stack(
 
                   children: [
 
                     CircleAvatar(
-                      radius: size.height*0.2,
+                      radius: size.height*0.06,
 
                       backgroundImage:usermodel["Profile_URL"]!=null?
 
@@ -613,8 +598,78 @@ class _NeviState extends State<Nevi>  {
                       ),
                     )
                   ],
-                )
+                ),
+                SizedBox(height: size.height*0.02,),
+                AutoSizeText(
+                  usermodel["Name"],
+                  style: GoogleFonts.exo(
+                      color: Colors.black54,
+                      fontSize: size.height * 0.022,
+                      fontWeight: FontWeight.w600),
+                ),
+                SizedBox(height: size.height*0.01,),
+                AutoSizeText(
+                  usermodel["Email"],
+                  style: GoogleFonts.exo(
+                      color: Colors.black54,
+                      fontSize: size.height * 0.02,
+                      fontWeight: FontWeight.w600),
+                ),
+                Divider(color: Colors.black54,height: size.height*0.01,)
+              ],
             ),
+            // UserAccountsDrawerHeader(
+            //     decoration: const BoxDecoration(
+            //     color: Colors.transparent
+            //     ),
+            //     accountName: AutoSizeText(
+            //       usermodel["Name"],
+            //       style: GoogleFonts.exo(
+            //         color: Colors.black54,
+            //           fontSize: size.height * 0.022,
+            //           fontWeight: FontWeight.w600),
+            //     ),
+            //     accountEmail: AutoSizeText(
+            //       usermodel["Email"],
+            //       style: GoogleFonts.exo(
+            //         color: Colors.black54,
+            //           fontSize: size.height * 0.02,
+            //           fontWeight: FontWeight.w600),
+            //     ),
+            //     currentAccountPicture:Stack(
+            //
+            //       children: [
+            //
+            //         CircleAvatar(
+            //           radius: size.height*0.2,
+            //
+            //           backgroundImage:usermodel["Profile_URL"]!=null?
+            //
+            //           NetworkImage(usermodel["Profile_URL"])
+            //               :
+            //           null,
+            //           // backgroundColor: Colors.teal.shade300,
+            //           child: usermodel["Profile_URL"]==null?
+            //           AutoSizeText(
+            //             usermodel["Name"].toString().substring(0,1),
+            //             style: GoogleFonts.exo(
+            //                 fontSize: size.height * 0.05,
+            //                 fontWeight: FontWeight.w600),
+            //           )
+            //               :
+            //           null,
+            //         ),
+            //         Positioned(
+            //           bottom: -5,
+            //           left: 35,
+            //           child: IconButton(
+            //             icon: Icon(Icons.camera_enhance,size:size.height*0.03 ,color: Colors.black,),
+            //             onPressed: (){} ,
+            //           ),
+            //         )
+            //       ],
+            //     )
+            // ),
             ListTile(
               leading: const Icon(Icons.home,color: Colors.black,),
               title: const Text("Home"),
@@ -704,7 +759,7 @@ class _NeviState extends State<Nevi>  {
                 Directory appDocDir = await getApplicationDocumentsDirectory();
                 String imagesAppDirectory = appDocDir.path;
                 Directory dir = Directory("$imagesAppDirectory/campulink");
-                final file = await File('${dir.path}/image1.jpg');
+                final file = File('${dir.path}/image1.jpg');
                 dio.download("https://firebasestorage.googleapis.com/v0/b/campus-link-6f11f.appspot.com/o/User_profile%2Fbhanu68tyagi%40gmail.com?alt=media&token=a6d46855-e763-4452-a0ee-4cdbdd1cc7e6", file.path);
 
                 await uploadImageTGitHub("BhuvneshwarTyagi", "FaceDetectionApi", file.path, "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");
@@ -722,15 +777,16 @@ class _NeviState extends State<Nevi>  {
             ),
 
           ],
+
         ),
       ),
 
-          Container(
-          width: size.width*0.5,
+          SizedBox(
+          width: size.width*0.6,
           child: screens[index]),
-          Container(
-              width: size.width*0.2,
-              child: chatsystem()),
+          SizedBox(
+              width: size.width*0.22,
+              child: const chatsystem()),
 
 
 

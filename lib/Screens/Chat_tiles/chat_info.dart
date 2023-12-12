@@ -100,17 +100,17 @@ class _ChatInfoState extends State<ChatInfo> {
 
                               // Create Directory into Firebase Storage
 
-                              Reference image_directory=reference.child("User_profile");
+                              Reference imageDirectory=reference.child("User_profile");
 
 
-                              Reference image_folder=image_directory.child("${usermodel["Email"]}");
+                              Reference imageFolder=imageDirectory.child("${usermodel["Email"]}");
 
-                              await image_folder.putFile(File(file!.path)).whenComplete(() async {
-                                String download_url=await image_folder.getDownloadURL();
+                              await imageFolder.putFile(File(file!.path)).whenComplete(() async {
+                                String downloadUrl=await imageFolder.getDownloadURL();
                                 print("uploaded");
-                                print(download_url);
+                                print(downloadUrl);
                                 await FirebaseFirestore.instance.collection("Messages").doc(widget.channel).update({
-                                  "image_URL":download_url,
+                                  "image_URL":downloadUrl,
                                 });
                                 setState(() {
                                   database().fetchuser();
@@ -174,7 +174,7 @@ class _ChatInfoState extends State<ChatInfo> {
                       decoration: BoxDecoration(
                         color: Colors.black54,
                         border: Border.all(color: Colors.black,width: 1),
-                        borderRadius: BorderRadius.all(Radius.circular(12))
+                        borderRadius: const BorderRadius.all(Radius.circular(12))
                       ),
                       padding: EdgeInsets.all(size.height*0.005),
                       child: InkWell(
@@ -609,7 +609,7 @@ class _ChatInfoState extends State<ChatInfo> {
                                                       width: size.width*0.22,
                                                       decoration: BoxDecoration(
                                                           shape: BoxShape.rectangle,
-                                                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                                                          borderRadius: const BorderRadius.all(Radius.circular(8)),
                                                           border: Border.all(
                                                               color: Colors.black38,
                                                               width: 1

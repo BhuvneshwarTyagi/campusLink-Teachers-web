@@ -3,7 +3,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:file_picker/file_picker.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_inapp_notifications/flutter_inapp_notifications.dart';
@@ -275,7 +274,7 @@ class _QuizQustionState extends State<QuizQustion> {
                                             setState(() {
                                               _options = value;
                                               print(
-                                                  "....................asfddde${value}");
+                                                  "....................asfddde$value");
                                               optionController = List.generate(
                                                   4,
                                                   (i) =>
@@ -861,7 +860,7 @@ class _QuizQustionState extends State<QuizQustion> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceEvenly,
                                               children: [
-                                                Container(
+                                                SizedBox(
                                                   height: size.height * 0.056,
                                                   width: size.width * 0.3,
                                                   child: ElevatedButton(

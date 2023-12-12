@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:flutter_inapp_notifications/flutter_inapp_notifications.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../Constraints.dart';
 import '../Screens/Main_page.dart';
@@ -236,7 +235,7 @@ class _DetailsState extends State<Details> {
                       ),
                       child: ElevatedButton(
                         onPressed: () async {
-                          final email = await FirebaseAuth.instance.currentUser?.email;
+                          final email = FirebaseAuth.instance.currentUser?.email;
                           await FirebaseFirestore.instance.collection("Teachers").doc(email).set({
                             "Email" : email,
                             "Name" : nameController.text.trim(),

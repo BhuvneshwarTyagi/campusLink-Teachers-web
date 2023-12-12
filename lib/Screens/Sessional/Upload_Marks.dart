@@ -84,49 +84,55 @@ class _UploadMarksState extends State<UploadMarks> {
                     index==0
                         ?
                     Container(
-                      margin: const EdgeInsets.only(bottom: 8),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           AutoSizeText(
                             "Upload Marks from sessional ${sessional+1}",
                             style: GoogleFonts.tiltNeon(
-                                fontSize: size.width*0.05,
+                                fontSize: size.width*0.02,
                                 color: Colors.red[900]
                             ),
                           ),
-                          Card(
-                            elevation: 30,
-                            child: ListTile(
-                              title: AutoSizeText(
-                                "Total marks",
-                                style: GoogleFonts.tiltNeon(
-                                    fontSize: size.width*0.05,
-                                    color: Colors.black
-                                ),
-                              ),
-                              trailing: Container(
-                                width: size.width*0.14,
-                                margin: const EdgeInsets.all(4),
-                                child: TextField(
-                                  controller: total,
-                                  maxLength: 3,
-                                  maxLines: 1,
-                                  cursorColor: Colors.green,
-                                  keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
-                                      focusedBorder: const OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.green,
-                                              width: 1.5
-                                          )
+                          SizedBox(
+                            height: size.height*0.12,
+                            child: Card(
+                              elevation: 30,
+                              child: Center(
+                                child: ListTile(
+                                  title: AutoSizeText(
+                                    "Total marks",
+                                    style: GoogleFonts.tiltNeon(
+                                        fontSize: size.width*0.015,
+                                        color: Colors.black
+                                    ),
+                                  ),
+                                  trailing: SizedBox(
+                                    width: size.width*0.07,
+
+                                      child:   TextFormField(
+                                        controller: total,
+                                        maxLength: 3,
+                                        maxLines: 1,
+                                        cursorColor: Colors.green,
+                                        keyboardType: TextInputType.number,
+                                        decoration: InputDecoration(
+
+                                            focusedBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.green,
+                                                    width: 1.5
+                                                )
+                                            ),
+                                            border: OutlineInputBorder(
+
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(size.width*0.002),
+                                              ),
+
+                                            )
+                                        ),
                                       ),
-                                      border: OutlineInputBorder(
-
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(size.width*0.01),
-                                          ),
-
-                                      )
                                   ),
                                 ),
                               ),
@@ -141,36 +147,36 @@ class _UploadMarksState extends State<UploadMarks> {
                       elevation: 30,
                       child: ListTile(
                         leading: CircleAvatar(
-                            radius: size.width * 0.06,
+                            radius: size.width*0.015,
                             backgroundColor: Colors.green[900],
                             child:  snapshot.data?.docs[index].data()["Profile_URL"] !="null" && snapshot.data?.docs[index].data()["Profile_URL"] != null
                                 ?
                             CircleAvatar(
-                              radius: size.width * 0.055,
+                              radius: size.width * 0.015,
                               backgroundImage: NetworkImage(snapshot.data?.docs[index].data()["Profile_URL"]),
                             )
                                 :
                             CircleAvatar(
-                              radius: size.width * 0.055,
+                              radius: size.width * 0.015,
                               backgroundImage: const AssetImage("assets/images/unknown.png"),
                             )
                         ),
                         title: AutoSizeText(
                           snapshot.data?.docs[index].data()["Name"],
                           style: GoogleFonts.tiltNeon(
-                            fontSize: size.width*0.05,
+                            fontSize: size.width*0.015,
                             color: Colors.black
                           ),
                         ),
                         subtitle: AutoSizeText(
                           snapshot.data?.docs[index].data()["Rollnumber"],
                           style: GoogleFonts.tiltNeon(
-                              fontSize: size.width*0.035,
+                              fontSize: size.width*0.01,
                               color: Colors.black87
                           ),
                         ),
                         trailing: SizedBox(
-                          width: size.width*0.26,
+                          width: size.width*0.17,
                           child: Row(
                             children: [
                               SizedBox(
@@ -195,7 +201,7 @@ class _UploadMarksState extends State<UploadMarks> {
                                       )
                                     ),
                                     border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(size.width*0.01))
+                                      borderRadius: BorderRadius.all(Radius.circular(size.width*0.002))
                                     )
                                   ),
                                 ),

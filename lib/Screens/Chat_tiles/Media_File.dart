@@ -24,7 +24,7 @@ class _Media_filesState extends State<Media_files> {
             icon: const Icon(Icons.arrow_back_ios_new)
         ),
         backgroundColor: Colors.black38,
-        title: Text("${widget.channel}"),
+        title: Text(widget.channel),
       ),
       body: Container(
         height: size.height,
@@ -96,7 +96,7 @@ class _Media_filesState extends State<Media_files> {
               },
             )
                 :
-            SizedBox();
+            const SizedBox();
           },
         ),
       ),

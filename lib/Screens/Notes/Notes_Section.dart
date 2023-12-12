@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:campus_link_teachers/Screens/Notes/Notes_Tile.dart';
 import 'package:campus_link_teachers/Screens/Notes/Upload_Bottom_Sheet.dart';

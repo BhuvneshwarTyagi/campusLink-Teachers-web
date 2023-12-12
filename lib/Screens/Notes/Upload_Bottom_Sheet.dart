@@ -470,7 +470,7 @@ class _UploadBottomSheetState extends State<UploadBottomSheet> {
                       await FirebaseFirestore.instance.collection("Students").doc(emails[i]).update({
                         "Notifications" : FieldValue.arrayUnion([{
                           "title" : "$subject_filter notes ${notesCount+1} quiz.",
-                          'body' : 'Your $subject_filter notes ${notesCount+1} quiz is pending. Please complete your quiz as soon as possible.\nDeadline: ${deadline}'
+                          'body' : 'Your $subject_filter notes ${notesCount+1} quiz is pending. Please complete your quiz as soon as possible.\nDeadline: $deadline'
                         }])
                       });
                     }

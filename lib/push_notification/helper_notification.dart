@@ -57,7 +57,7 @@ class NotificationServices{
             priority: Priority.high,
             icon: "@drawable/ic_launcher"
           ),
-          iOS: DarwinNotificationDetails());
+          iOS: const DarwinNotificationDetails());
 
       await _notificationsPlugin.show(
         id,

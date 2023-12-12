@@ -1,4 +1,3 @@
-import 'package:campus_link_teachers/Screens/loadingscreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -500,7 +499,7 @@ class _QuizscoreState extends State<Quizscore> {
     }
     print("Email is present : $unattemptedStudents");
     // Sort the map based on timeStamp and Quiz Sore ....
-    print("....................Before${result}");
+    print("....................Before$result");
     result.sort((a, b) {
       if(a["Score"]==b["Score"])
       {

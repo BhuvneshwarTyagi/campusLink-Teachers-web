@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../Constraints.dart';
-import 'background_image.dart';
 import 'chat.dart';
 
 class chatsystem extends StatefulWidget {
@@ -25,86 +24,81 @@ class _chatsystemState extends State<chatsystem> {
     Size size=MediaQuery.of(context).size;
     return Container(
       decoration: const BoxDecoration(
-        gradient: LinearGradient(
-            colors: [
-          Color.fromRGBO(89, 152, 207, 1),
-          Color.fromRGBO(178, 227, 235, 1)
 
-        ]),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          backgroundColor: Colors.black38,
-          shadowColor: Colors.transparent,
-          titleSpacing: 0,
-          leadingWidth: size.width*0.13,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new,color: Colors.black,),
-            onPressed: (){
-              Navigator.pop(context);
-            },
-          ),
-          title: Row(
-            children: [
-
-              SizedBox(
-                height: size.height*0.045,
-                  width: size.width*0.1,
-                  child: Image.asset("assets/images/chat-icon.png"),
-              ),
-              SizedBox(width: size.width*0.02,),
-              Text("Chats",
-                style: GoogleFonts.aBeeZee(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,
-
-                ),
-              ),
-            ],
-          ),
-          actions: <Widget> [
-
-            PopupMenuButton(
-              icon: Icon(Icons.more_vert,size: size.height*0.04,color: Colors.black,),
-              itemBuilder: (context) {
-
-                return[
-                  PopupMenuItem(
-                      child:TextButton(
-                          onPressed: (){
-
-                          }, child:const Text("Search",style: TextStyle(color: Colors.black),))),
-                  PopupMenuItem(
-                      child: StreamBuilder(
-                        stream: FirebaseFirestore.instance.collection("Messages").doc(usermodel["Message_channels"][0]).snapshots(),
-                        builder: (context, snapshot) {
-                          return snapshot.hasData
-                              ?
-                          TextButton(
-                            onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>Background_image(groupimage: snapshot.data!.data()!["image_URL"], channel: usermodel["Message_channels"][0],),
-                              ),
-                              );
-
-                            },
-                            child:const Text("Wallpaper",style: TextStyle(color: Colors.black),
-                            ),
-                          )
-                              :
-                          CircleAvatar(
-                            backgroundColor: const Color.fromRGBO(86, 149, 178, 1),
-                            radius: size.width*0.07,
-                            child: const CircularProgressIndicator(),
-                          );
-                        },
-                      ),
-                  ),
-
-                ];
-              },)
-          ],
-        ),
+        // appBar: AppBar(
+        //   backgroundColor: Colors.black38,
+        //   shadowColor: Colors.transparent,
+        //   titleSpacing: 0,
+        //   leadingWidth: size.width*0.13,
+        //   leading: IconButton(
+        //     icon: const Icon(Icons.arrow_back_ios_new,color: Colors.black,),
+        //     onPressed: (){
+        //       Navigator.pop(context);
+        //     },
+        //   ),
+        //   title: Row(
+        //     children: [
+        //
+        //       SizedBox(
+        //         height: size.height*0.045,
+        //           width: size.width*0.1,
+        //           child: Image.asset("assets/images/chat-icon.png"),
+        //       ),
+        //       SizedBox(width: size.width*0.02,),
+        //       Text("Chats",
+        //         style: GoogleFonts.aBeeZee(
+        //           color: Colors.black,
+        //           fontWeight: FontWeight.w600,
+        //
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        //   actions: <Widget> [
+        //
+        //     PopupMenuButton(
+        //       icon: Icon(Icons.more_vert,size: size.height*0.04,color: Colors.black,),
+        //       itemBuilder: (context) {
+        //
+        //         return[
+        //           PopupMenuItem(
+        //               child:TextButton(
+        //                   onPressed: (){
+        //
+        //                   }, child:const Text("Search",style: TextStyle(color: Colors.black),))),
+        //           PopupMenuItem(
+        //               child: StreamBuilder(
+        //                 stream: FirebaseFirestore.instance.collection("Messages").doc(usermodel["Message_channels"][0]).snapshots(),
+        //                 builder: (context, snapshot) {
+        //                   return snapshot.hasData
+        //                       ?
+        //                   TextButton(
+        //                     onPressed: (){
+        //                       Navigator.push(context, MaterialPageRoute(builder: (context)=>Background_image(groupimage: snapshot.data!.data()!["image_URL"], channel: usermodel["Message_channels"][0],),
+        //                       ),
+        //                       );
+        //
+        //                     },
+        //                     child:const Text("Wallpaper",style: TextStyle(color: Colors.black),
+        //                     ),
+        //                   )
+        //                       :
+        //                   CircleAvatar(
+        //                     backgroundColor: const Color.fromRGBO(86, 149, 178, 1),
+        //                     radius: size.width*0.07,
+        //                     child: const CircularProgressIndicator(),
+        //                   );
+        //                 },
+        //               ),
+        //           ),
+        //
+        //         ];
+        //       },)
+        //   ],
+        // ),
         body: usermodel["Message_channels"]==null || usermodel["Message_channels"].length<0
             ?
         Center(
@@ -135,12 +129,14 @@ class _chatsystemState extends State<chatsystem> {
 
           child: ListView.builder(
             scrollDirection: Axis.vertical,
+            reverse: true,
             itemCount: usermodel["Message_channels"].length,
             itemBuilder: (context, index) {
               return SizedBox(
                 height: size.height*0.1,
 
                 child: StreamBuilder(
+
                     stream: FirebaseFirestore.instance.collection("Messages").doc(usermodel["Message_channels"][index]).snapshots(),
                     builder: (context, snapshot) {
                       print(">>>>>>>>>>>>>>>>>>>>>chat list");
@@ -174,86 +170,84 @@ class _chatsystemState extends State<chatsystem> {
                           return ChatPage(channel: usermodel["Message_channels"][index]);
                         },));
                       },
-                      child: Container(
+                      child: SizedBox(
                         height: size.height*0.11,
-                        decoration: const BoxDecoration(
-                            color: Colors.transparent,
-                            border: Border(bottom: BorderSide(color: Colors.black, width: 1))),
-                        padding: EdgeInsets.all(size.width*0.02),
-                        child:  Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: const Color.fromRGBO(86, 149, 178, 1),
-                              radius: size.width*0.07,
-                              backgroundImage: (profileUrl != "null" || profileUrl!="") ? NetworkImage(profileUrl) : null,
-                              child: (profileUrl == "null" || profileUrl == "")
-                                  ?
-                              AutoSizeText(
-                                Name.substring(0,1),
-                                style: GoogleFonts.aBeeZee(
-                                    color: Colors.black,
-                                    fontSize: size.height * 0.035,
-                                    fontWeight: FontWeight.w600),
-                              )
-                                  : null,
-                            ),
-
-                            SizedBox(width: size.width*0.03),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
+                        child:  Card(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: const Color.fromRGBO(86, 149, 178, 1),
+                                radius: size.width*0.015,
+                                backgroundImage: (profileUrl != "null" || profileUrl!="") ? NetworkImage(profileUrl) : null,
+                                child: (profileUrl == "null" || profileUrl == "")
+                                    ?
                                 AutoSizeText(
-                                  Name,
-                                  style: GoogleFonts.aBeeZee(color: Colors.black,fontSize: size.width*0.045,fontWeight: FontWeight.w600),
-                                ),
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      width: size.width*0.7,
-                                      child: AutoSizeText("${
-                                          snapshot.data?.data()!["Messages"].length >0
-                                              ?
-                                          snapshot.data!.data()!["${snapshot.data?.data()!["Messages"][snapshot.data?.data()!["Messages"].length-1]["UID"].toString().split("@")[0]}"]['Name']
-                                              :
-                                          ""
-                                      } : ${
-                                          snapshot.data?.data()!["Messages"].length > 0
-                                              ?
-                                          snapshot.data?.data()!["Messages"][snapshot.data?.data()!["Messages"].length-1]["text"].length <25 ? snapshot.data?.data()!["Messages"][snapshot.data?.data()!["Messages"].length-1]["text"] : snapshot.data?.data()!["Messages"][snapshot.data?.data()!["Messages"].length-1]["text"].toString().substring(0,25)
-                                              :
-                                          ""
-                                      }",
-                                        style: GoogleFonts.aBeeZee(
-                                            color: Colors.black.withOpacity(0.80),
-                                            fontSize: size.width*0.035,
-                                            fontWeight: FontWeight.w500
-                                        ),
-                                        textAlign: TextAlign.left,
-                                      ),
-                                    ),
-                                    readCount - count>0
-                                        ?
-                                    CircleAvatar(
-                                      radius: size.width*0.03,
-                                      backgroundColor: Colors.green,
-                                      child: AutoSizeText("${readCount - count}",
-                                        style: GoogleFonts.aBeeZee(
-                                            color: Colors.white,
-                                            fontSize: size.width*0.035,
-                                            fontWeight: FontWeight.w500
-                                        ),
-                                        textAlign: TextAlign.left,
-                                      ),
-                                    )
-                                        :
-                                    const SizedBox(),
-                                  ],
+                                  Name.substring(0,1),
+                                  style: GoogleFonts.tiltNeon(
+                                      color: Colors.black,
+                                      fontSize: size.height * 0.01,
+                                      fontWeight: FontWeight.w600),
                                 )
-                              ],
-                            )
-                          ],
+                                    : null,
+                              ),
+
+                              SizedBox(width: size.width*0.005),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  AutoSizeText(
+                                    Name,
+                                    style: GoogleFonts.tiltNeon(color: Colors.black,fontSize: size.width*0.01,fontWeight: FontWeight.w600),
+                                  ),
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width: size.width*0.1,
+                                        child: AutoSizeText("${
+                                            snapshot.data?.data()!["Messages"].length >0
+                                                ?
+                                            snapshot.data!.data()!["${snapshot.data?.data()!["Messages"][snapshot.data?.data()!["Messages"].length-1]["UID"].toString().split("@")[0]}"]['Name']
+                                                :
+                                            ""
+                                        } : ${
+                                            snapshot.data?.data()!["Messages"].length > 0
+                                                ?
+                                            snapshot.data?.data()!["Messages"][snapshot.data?.data()!["Messages"].length-1]["text"].length <25 ? snapshot.data?.data()!["Messages"][snapshot.data?.data()!["Messages"].length-1]["text"] : snapshot.data?.data()!["Messages"][snapshot.data?.data()!["Messages"].length-1]["text"].toString().substring(0,25)
+                                                :
+                                            ""
+                                        }",
+                                          style: GoogleFonts.tiltNeon(
+                                              color: Colors.black.withOpacity(0.80),
+                                              fontSize: size.width*0.01,
+                                              fontWeight: FontWeight.w500
+                                          ),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      ),
+                                      readCount - count>0
+                                          ?
+                                      CircleAvatar(
+                                        radius: size.width*0.03,
+                                        backgroundColor: Colors.green,
+                                        child: AutoSizeText("${readCount - count}",
+                                          style: GoogleFonts.tiltNeon(
+                                              color: Colors.white,
+                                              fontSize: size.width*0.01,
+                                              fontWeight: FontWeight.w500
+                                          ),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      )
+                                          :
+                                      const SizedBox(),
+                                    ],
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
                         )
                       ),
                     )
@@ -264,86 +258,84 @@ class _chatsystemState extends State<chatsystem> {
                           return ChatPage(channel: usermodel["Message_channels"][index]);
                         },));
                       },
-                      child: Container(
+                      child: SizedBox(
                         height: size.height*0.11,
-                        decoration: const BoxDecoration(
-                            color: Colors.transparent,
-                            border: Border(bottom: BorderSide(color: Colors.black, width: 1))),
-                        padding: EdgeInsets.all(size.width*0.02),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: const Color.fromRGBO(86, 149, 178, 1),
-                              radius: size.width*0.07,
-                              backgroundImage: (snapshot.data!.data()!["image_URL"]!="null" && snapshot.data!.data()!["image_URL"]!=null)? NetworkImage(snapshot.data!.data()!["image_URL"]) : null,
-                              child: (snapshot.data?.data()!["image_URL"] == "null" || snapshot.data!.data()!["image_URL"] ==null)
-                                  ?
-                              AutoSizeText(
-                                usermodel["Message_channels"][index].toString().split(" ")[6].substring(0, 1),
-                                style: GoogleFonts.aBeeZee(
-                                    color: Colors.black,
-                                    fontSize: size.height * 0.035,
-                                    fontWeight: FontWeight.w600),
-                              )
-                                  : null,
-                            ),
-
-                            SizedBox(width: size.width*0.03),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
+                        child: Card(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: const Color.fromRGBO(86, 149, 178, 1),
+                                radius: size.width*0.015,
+                                backgroundImage: (snapshot.data!.data()!["image_URL"]!="null" && snapshot.data!.data()!["image_URL"]!=null)? NetworkImage(snapshot.data!.data()!["image_URL"]) : null,
+                                child: (snapshot.data?.data()!["image_URL"] == "null" || snapshot.data!.data()!["image_URL"] ==null)
+                                    ?
                                 AutoSizeText(
-                                usermodel["Message_channels"][index],
-                                  style: GoogleFonts.aBeeZee(color: Colors.black,fontSize: size.width*0.045,fontWeight: FontWeight.w600),
-                                ),
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      width: size.width*0.7,
-                                      child: AutoSizeText("${
-                                          snapshot.data?.data()!["Messages"].length >0
-                                              ?
-                                          snapshot.data!.data()!["${snapshot.data?.data()!["Messages"][snapshot.data?.data()!["Messages"].length-1]["UID"].toString().split("@")[0]}"]['Name']
-                                              :
-                                          ""
-                                      } : ${
-                                          snapshot.data?.data()!["Messages"].length > 0
-                                              ?
-                                          snapshot.data?.data()!["Messages"][snapshot.data?.data()!["Messages"].length-1]["text"].length <25 ? snapshot.data?.data()!["Messages"][snapshot.data?.data()!["Messages"].length-1]["text"] : snapshot.data?.data()!["Messages"][snapshot.data?.data()!["Messages"].length-1]["text"].toString().substring(0,20)
-                                              :
-                                          ""
-                                      }",
-                                        style: GoogleFonts.aBeeZee(
-                                            color: Colors.black.withOpacity(0.80),
-                                            fontSize: size.width*0.035,
-                                            fontWeight: FontWeight.w500
-                                        ),
-                                        textAlign: TextAlign.left,
-                                      ),
-                                    ),
-                                    readCount - count>0
-                                        ?
-                                    CircleAvatar(
-                                      radius: size.width*0.03,
-                                      backgroundColor: Colors.green,
-                                      child: AutoSizeText("${readCount - count}",
-                                        style: GoogleFonts.aBeeZee(
-                                            color: Colors.white,
-                                            fontSize: size.width*0.035,
-                                            fontWeight: FontWeight.w500
-                                        ),
-                                        textAlign: TextAlign.left,
-                                      ),
-                                    )
-                                        :
-                                    const SizedBox(),
-                                  ],
+                                  usermodel["Message_channels"][index].toString().split(" ")[6].substring(0, 1),
+                                  style: GoogleFonts.tiltNeon(
+                                      color: Colors.black,
+                                      fontSize: size.height * 0.01,
+                                      fontWeight: FontWeight.w600),
                                 )
-                              ],
-                            )
-                          ],
+                                    : null,
+                              ),
+
+                              SizedBox(width: size.width*0.005),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  AutoSizeText(
+                                  usermodel["Message_channels"][index],
+                                    style: GoogleFonts.tiltNeon(color: Colors.black,fontSize: size.width*0.01,fontWeight: FontWeight.w600),
+                                  ),
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width: size.width*0.1,
+                                        child: AutoSizeText("${
+                                            snapshot.data?.data()!["Messages"].length >0
+                                                ?
+                                            snapshot.data!.data()!["${snapshot.data?.data()!["Messages"][snapshot.data?.data()!["Messages"].length-1]["UID"].toString().split("@")[0]}"]['Name']
+                                                :
+                                            ""
+                                        } : ${
+                                            snapshot.data?.data()!["Messages"].length > 0
+                                                ?
+                                            snapshot.data?.data()!["Messages"][snapshot.data?.data()!["Messages"].length-1]["text"].length <25 ? snapshot.data?.data()!["Messages"][snapshot.data?.data()!["Messages"].length-1]["text"] : snapshot.data?.data()!["Messages"][snapshot.data?.data()!["Messages"].length-1]["text"].toString().substring(0,20)
+                                                :
+                                            ""
+                                        }",
+                                          style: GoogleFonts.tiltNeon(
+                                              color: Colors.black.withOpacity(0.80),
+                                              fontSize: size.width*0.01,
+                                              fontWeight: FontWeight.w500
+                                          ),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      ),
+                                      readCount - count>0
+                                          ?
+                                      CircleAvatar(
+                                        radius: size.width*0.015,
+                                        backgroundColor: Colors.green,
+                                        child: AutoSizeText("${readCount - count}",
+                                          style: GoogleFonts.tiltNeon(
+                                              color: Colors.white,
+                                              fontSize: size.width*0.01,
+                                              fontWeight: FontWeight.w500
+                                          ),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      )
+                                          :
+                                      const SizedBox(),
+                                    ],
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     )

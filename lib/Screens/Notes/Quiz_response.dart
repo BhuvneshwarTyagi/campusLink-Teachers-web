@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../Constraints.dart';
-import '../loadingscreen.dart';
 
 class responseScreen extends StatefulWidget {
    responseScreen({super.key,required this.quizId});
@@ -193,7 +192,7 @@ class _responseScreenState extends State<responseScreen> {
                                                   child:Center(
                                                     child: InkWell(
                                                       onTap: () {
-                                                       if( nameRollNumber[optionAlphabet[index]]!=null && nameRollNumber[optionAlphabet[index]]!.length>0)
+                                                       if( nameRollNumber[optionAlphabet[index]]!=null && nameRollNumber[optionAlphabet[index]]!.isNotEmpty)
                                                          {
                                                            showDialog(
                                                              context: context,

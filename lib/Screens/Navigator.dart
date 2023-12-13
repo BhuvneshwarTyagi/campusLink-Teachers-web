@@ -133,11 +133,7 @@ class _NeviState extends State<Nevi>  {
                       child: Container(
                         width: size.width*0.05,
                         height: size.width*0.05,
-                        padding: const EdgeInsets.all(2),
-                        decoration: BoxDecoration(
-                          color: Colors.green.shade700,
-                          shape:BoxShape.circle,
-                        ),
+
 
                         child: Center(
                           child: SizedBox(

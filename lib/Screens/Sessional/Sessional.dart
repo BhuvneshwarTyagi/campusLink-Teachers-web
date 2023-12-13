@@ -449,7 +449,7 @@ class _SessionalState extends State<Sessional> with TickerProviderStateMixin{
                                         snapshot.data!.data()?["College-$selectedUniversity"][index],
                                         style: GoogleFonts.tiltNeon(
                                             color: Colors.black,
-                                            fontSize: size.width*0.015,
+                                            fontSize: size.width*0.01,
                                             fontWeight: FontWeight.w500
                                         ),
                                         maxLines: 1,
@@ -497,7 +497,7 @@ class _SessionalState extends State<Sessional> with TickerProviderStateMixin{
                                         snapshot.data!.data()?["University"][index],
                                         style: GoogleFonts.tiltNeon(
                                             color: Colors.black,
-                                            fontSize: size.width*0.02,
+                                            fontSize: size.width*0.01,
                                             fontWeight: FontWeight.w500
                                         ),
                                         maxLines: 1,

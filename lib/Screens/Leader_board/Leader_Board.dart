@@ -32,242 +32,246 @@ class _OverAllLeaderBoardState extends State<OverAllLeaderBoard> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: load ?
-      ListView.builder(
-        shrinkWrap: true,
-        itemCount: result.length,
-        itemBuilder: (context, index) {
-          return  Column(
-            children: [
-              index==0 ?
-                  Column(
-                    children: [
-                      TopThree(
-                        data: [
-                          {
-                            "Name" : result[0]['Name'],
-                            "Email" : result[0]['Email'],
-                            "Submitted" : result[0]['Score']/100,
-                          },
-                          {
-                            "Name" : result[1]['Name'],
-                            "Email" : result[1]['Email'],
-                            "Submitted" : result[1]['Score']/100,
-                          },
-                          {
-                            "Name" : result[2]['Name'],
-                            "Email" : result[2]['Email'],
-                            "Submitted" : result[2]['Score']/100,
-                          }
-                        ],
-                      ),
-                      SizedBox(
-                        height: size.height * 0.02,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+      Container(
+        child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: result.length,
+          itemBuilder: (context, index) {
+            return  Column(
+              children: [
+                index==0 ?
+                    Column(
+                      children: [
+                        TopThree(
+                          data: [
+                            {
+                              "Name" : result[0]['Name'],
+                              "Email" : result[0]['Email'],
+                              "Submitted" : result[0]['Score']/100,
+                            },
+                            {
+                              "Name" : result[1]['Name'],
+                              "Email" : result[1]['Email'],
+                              "Submitted" : result[1]['Score']/100,
+                            },
+                            {
+                              "Name" : result[2]['Name'],
+                              "Email" : result[2]['Email'],
+                              "Submitted" : result[2]['Score']/100,
+                            }
+                          ],
+                        ),
+                        SizedBox(
+                          height: size.height * 0.01,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                AutoSizeText("Average Performance: ",
+                                  style: GoogleFonts.tiltNeon(
+                                      color: Colors.black,
+                                      fontSize: size.width*0.015
+                                  ),),
+                                AutoSizeText("${(averagePerformance).toStringAsFixed(2)}%",
+                                  style: GoogleFonts.tiltNeon(
+                                      color: Colors.green[900],
+                                      fontSize: size.width*0.015
+                                  ),),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: size.height * 0.01,
+                        ),
+                      ],
+                    )
+                :
+                    const SizedBox(),
+                Card(
+                  elevation: 25,
+                  shape: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.black,
+                      width: 1.5,
+                    )
+                  ),
+                  child: ExpansionTile(
+                    title: AutoSizeText("${result[index]["Name"]}",style: GoogleFonts.tiltNeon(
+                      color: Colors.black,
+                      fontSize: size.width*0.015,
+
+                    ),
+                    ),
+                    subtitle: AutoSizeText("${result[index]["Rollnumber"]}",style: GoogleFonts.tiltNeon(
+                      color: Colors.black45,
+                      fontSize: size.width*0.015,
+
+                    ),),
+                    leading: SizedBox(
+                      width: size.width*0.05,
+                      child: Row(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              AutoSizeText("Average Performance: ",
-                                style: GoogleFonts.tiltNeon(
-                                    color: Colors.black,
-                                    fontSize: size.width*0.05
-                                ),),
-                              AutoSizeText("${(averagePerformance).toStringAsFixed(2)}%",
-                                style: GoogleFonts.tiltNeon(
-                                    color: Colors.green[900],
-                                    fontSize: size.width*0.06
-                                ),),
-                            ],
+                          AutoSizeText("${index+1}",style: GoogleFonts.tiltNeon(
+                            color: Colors.black,
+                            fontSize: size.width*0.015,
+
+                          ),),
+                          SizedBox(
+                            width: size.width*0.01,
+                          ),
+                          CircleAvatar(
+                              radius: size.width * 0.015,
+                              backgroundColor: Colors.green[900],
+                              child:  result[index]["Profile_URL"] !="null" && result[index]["Profile_URL"] != null
+                                  ?
+                              CircleAvatar(
+                                radius: size.width * 0.015,
+                                backgroundImage: NetworkImage(result[index]["Profile_URL"]),
+                              )
+                                  :
+                              CircleAvatar(
+                                radius: size.width * 0.015,
+                                backgroundImage: const AssetImage("assets/images/unknown.png"),
+                              )
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: size.height * 0.022,
+                    ),
+                    trailing: Container(
+                      width: size.width*0.05,
+
+
+                      child: Row(
+                        children: [
+                          AutoSizeText("${(result[index]["Score"]).toStringAsFixed(2)}%",style: GoogleFonts.tiltNeon(
+                            color: (result[index]["Score"]) < 40
+                                ?
+                            Colors.red[600]
+                                :
+                            (result[index]["Score"])<75
+                                ?
+                            Colors.yellow[700]
+                                :
+                            Colors.green[900]
+                            ,
+                            fontSize: size.width*0.015,
+
+                          ),
+
+                          ),
+                        ],
                       ),
-                    ],
-                  )
-              :
-                  const SizedBox(),
-              Card(
-                elevation: 25,
-                shape: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.black,
-                    width: 1.5,
-                  )
-                ),
-                child: ExpansionTile(
-                  title: AutoSizeText("${result[index]["Name"]}",style: GoogleFonts.tiltNeon(
-                    color: Colors.black,
-                    fontSize: size.width*0.045,
-
-                  ),
-                  ),
-                  subtitle: AutoSizeText("${result[index]["Rollnumber"]}",style: GoogleFonts.tiltNeon(
-                    color: Colors.black45,
-                    fontSize: size.width*0.045,
-
-                  ),),
-                  leading: SizedBox(
-                    width: size.width*0.2,
-                    child: Row(
-                      children: [
-                        AutoSizeText("${index+1}",style: GoogleFonts.tiltNeon(
-                          color: Colors.black,
-                          fontSize: size.width*0.06,
+                    ),
+                    children: [
+                      ListTile(
+                        title: AutoSizeText("Attendance",style: GoogleFonts.tiltNeon(
+                          color: Colors.black54,
+                          fontSize: size.width*0.015,
 
                         ),),
-                        SizedBox(
-                          width: size.width*0.02,
-                        ),
-                        CircleAvatar(
-                            radius: size.width * 0.06,
-                            backgroundColor: Colors.green[900],
-                            child:  result[index]["Profile_URL"] !="null" && result[index]["Profile_URL"] != null
-                                ?
-                            CircleAvatar(
-                              radius: size.width * 0.055,
-                              backgroundImage: NetworkImage(result[index]["Profile_URL"]),
-                            )
-                                :
-                            CircleAvatar(
-                              radius: size.width * 0.055,
-                              backgroundImage: const AssetImage("assets/images/unknown.png"),
-                            )
-                        ),
-                      ],
-                    ),
-                  ),
-                  trailing: SizedBox(
-                    width: size.width*0.2,
-                    child: Row(
-                      children: [
-                        AutoSizeText("${(result[index]["Score"]).toStringAsFixed(2)}%",style: GoogleFonts.tiltNeon(
-                          color: (result[index]["Score"]) < 40
+                        trailing: AutoSizeText("${result[index]["AttendanceScore"].toStringAsFixed(2)}%",style: GoogleFonts.tiltNeon(
+                          color: (result[index]["AttendanceScore"]) <50
                               ?
                           Colors.red[600]
                               :
-                          (result[index]["Score"])<75
+                          (result[index]["AttendanceScore"])<75
                               ?
-                          Colors.yellow[700]
+                          Colors.orangeAccent[300]
                               :
                           Colors.green[900]
                           ,
-                          fontSize: size.width*0.045,
+                          fontSize: size.width*0.015,
 
-                        ),
+                        ),),
+                      ),
+                      ListTile(
 
-                        ),
-                      ],
-                    ),
-                  ),
-                  children: [
-                    ListTile(
-                      title: AutoSizeText("Attendance",style: GoogleFonts.tiltNeon(
-                        color: Colors.black54,
-                        fontSize: size.width*0.045,
+                        title: AutoSizeText("Assignment",style: GoogleFonts.tiltNeon(
+                          color: Colors.black54,
+                          fontSize: size.width*0.015,
 
-                      ),),
-                      trailing: AutoSizeText("${result[index]["AttendanceScore"].toStringAsFixed(2)}%",style: GoogleFonts.tiltNeon(
-                        color: (result[index]["AttendanceScore"]) <50
-                            ?
-                        Colors.red[600]
-                            :
-                        (result[index]["AttendanceScore"])<75
-                            ?
-                        Colors.orangeAccent[300]
-                            :
-                        Colors.green[900]
-                        ,
-                        fontSize: size.width*0.045,
+                        ),),
+                        trailing: AutoSizeText("${result[index]["AssignmentScore"].toStringAsFixed(2)}%",style: GoogleFonts.tiltNeon(
+                          color: result[index]["AssignmentScore"] < 50
+                              ?
+                          Colors.red[600]
+                              :
+                          result[index]["AssignmentScore"] < 75
+                              ?
+                          Colors.orangeAccent[300]
+                              :
+                          Colors.green[900]
+                          ,
+                          fontSize: size.width*0.015,
 
-                      ),),
-                    ),
-                    ListTile(
+                        ),),
+                      ),
+                      ExpansionTile(
 
-                      title: AutoSizeText("Assignment",style: GoogleFonts.tiltNeon(
-                        color: Colors.black54,
-                        fontSize: size.width*0.045,
+                        title: AutoSizeText("Sessional Marks",style: GoogleFonts.tiltNeon(
+                          color: Colors.black54,
+                          fontSize: size.width*0.015,
 
-                      ),),
-                      trailing: AutoSizeText("${result[index]["AssignmentScore"].toStringAsFixed(2)}%",style: GoogleFonts.tiltNeon(
-                        color: result[index]["AssignmentScore"] < 50
-                            ?
-                        Colors.red[600]
-                            :
-                        result[index]["AssignmentScore"] < 75
-                            ?
-                        Colors.orangeAccent[300]
-                            :
-                        Colors.green[900]
-                        ,
-                        fontSize: size.width*0.045,
+                        ),),
+                        trailing: AutoSizeText("${result[index]["MarksScore"].toStringAsFixed(2)}%",style: GoogleFonts.tiltNeon(
+                          color: result[index]["MarksScore"] < 50
+                              ?
+                          Colors.red[600]
+                              :
+                          result[index]["MarksScore"] < 75
+                              ?
+                          Colors.orangeAccent[300]
+                              :
+                          Colors.green[900]
+                          ,
+                          fontSize: size.width*0.015,
 
-                      ),),
-                    ),
-                    ExpansionTile(
+                        ),),
+                        children: [
+                          SizedBox(
+                            height: size.height*0.1,
+                            child: ListView.builder(
+                              itemCount: result[index]["Sessional_record"].length,
+                                itemBuilder: (context, index1) {
+                                  return ListTile(
 
-                      title: AutoSizeText("Sessional Marks",style: GoogleFonts.tiltNeon(
-                        color: Colors.black54,
-                        fontSize: size.width*0.045,
-
-                      ),),
-                      trailing: AutoSizeText("${result[index]["MarksScore"].toStringAsFixed(2)}%",style: GoogleFonts.tiltNeon(
-                        color: result[index]["MarksScore"] < 50
-                            ?
-                        Colors.red[600]
-                            :
-                        result[index]["MarksScore"] < 75
-                            ?
-                        Colors.orangeAccent[300]
-                            :
-                        Colors.green[900]
-                        ,
-                        fontSize: size.width*0.045,
-
-                      ),),
-                      children: [
-                        SizedBox(
-                          height: size.height*0.15,
-                          child: ListView.builder(
-                            itemCount: result[index]["Sessional_record"].length,
-                              itemBuilder: (context, index1) {
-                                return ListTile(
-
-                                  title: AutoSizeText(
-                                    "Sessional ${index1+1} marks",
-                                    style: GoogleFonts.tiltNeon(
-                                      color: Colors.black54,
-                                      fontSize: size.width*0.045,
+                                    title: AutoSizeText(
+                                      "Sessional ${index1+1} marks",
+                                      style: GoogleFonts.tiltNeon(
+                                        color: Colors.black54,
+                                        fontSize: size.width*0.015,
+                                      ),
                                     ),
-                                  ),
-                                  trailing: AutoSizeText("${result[index]["Sessional_record"][index1]["obtainedMarks"]}/${result[index]["Sessional_record"][index1]["totalMarks"]}",style: GoogleFonts.tiltNeon(
-                                    color: result[index]["AssignmentScore"] < 50
-                                        ?
-                                    Colors.red[600]
-                                        :
-                                    result[index]["AssignmentScore"] < 75
-                                        ?
-                                    Colors.orangeAccent[300]
-                                        :
-                                    Colors.green[900]
-                                    ,
-                                    fontSize: size.width*0.045,
+                                    trailing: AutoSizeText("${result[index]["Sessional_record"][index1]["obtainedMarks"]}/${result[index]["Sessional_record"][index1]["totalMarks"]}",style: GoogleFonts.tiltNeon(
+                                      color: result[index]["AssignmentScore"] < 50
+                                          ?
+                                      Colors.red[600]
+                                          :
+                                      result[index]["AssignmentScore"] < 75
+                                          ?
+                                      Colors.orangeAccent[300]
+                                          :
+                                      Colors.green[900]
+                                      ,
+                                      fontSize: size.width*0.015,
 
-                                  ),),
-                                );
-                              },),
-                        )
-                      ],
-                    )
-                  ],
+                                    ),),
+                                  );
+                                },),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          );
-          },
+              ],
+            );
+            },
+        ),
       )
           :
       const loading(text: "Fetching"),

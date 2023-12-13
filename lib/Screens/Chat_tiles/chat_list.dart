@@ -186,7 +186,7 @@ class _chatsystemState extends State<chatsystem> {
                                   Name.substring(0,1),
                                   style: GoogleFonts.tiltNeon(
                                       color: Colors.black,
-                                      fontSize: size.height * 0.01,
+                                      fontSize: size.height * 0.03,
                                       fontWeight: FontWeight.w600),
                                 )
                                     : null,
@@ -274,7 +274,7 @@ class _chatsystemState extends State<chatsystem> {
                                   usermodel["Message_channels"][index].toString().split(" ")[6].substring(0, 1),
                                   style: GoogleFonts.tiltNeon(
                                       color: Colors.black,
-                                      fontSize: size.height * 0.01,
+                                      fontSize: size.height * 0.03,
                                       fontWeight: FontWeight.w600),
                                 )
                                     : null,

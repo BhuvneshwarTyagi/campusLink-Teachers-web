@@ -84,6 +84,7 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver{
       debugPrint(e.toString());
     }
   }
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return WillPopScope(

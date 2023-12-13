@@ -50,38 +50,38 @@ class _ViewMarksState extends State<ViewMarks> {
                 elevation: 30,
                 child: ExpansionTile(
                   leading: CircleAvatar(
-                      radius: size.width * 0.06,
+                      radius: size.width * 0.015,
                       backgroundColor: Colors.green[900],
                       child:  snapshot.data?.docs[index].data()["Profile_URL"] !="null" && snapshot.data?.docs[index].data()["Profile_URL"] != null
                           ?
                       CircleAvatar(
-                        radius: size.width * 0.055,
+                        radius: size.width * 0.015,
                         backgroundImage: NetworkImage(snapshot.data?.docs[index].data()["Profile_URL"]),
                       )
                           :
                       CircleAvatar(
-                        radius: size.width * 0.055,
+                        radius: size.width * 0.015,
                         backgroundImage: const AssetImage("assets/images/unknown.png"),
                       )
                   ),
                   title: AutoSizeText(
                     snapshot.data?.docs[index].data()["Name"],
                     style: GoogleFonts.tiltNeon(
-                        fontSize: size.width*0.05,
+                        fontSize: size.width*0.01,
                         color: Colors.black
                     ),
                   ),
                   subtitle: AutoSizeText(
                     snapshot.data?.docs[index].data()["Rollnumber"],
                     style: GoogleFonts.tiltNeon(
-                        fontSize: size.width*0.035,
+                        fontSize: size.width*0.01,
                         color: Colors.black87
                     ),
                   ),
                   children: [
                     Container(
                       height: size.height*0.2,
-                      color: Colors.black26,
+                      color: Colors.transparent,
                       child: ListView.builder(
                         itemCount: snapshot.data?.docs[index].data()["Marks"][subject_filter]["Total"],
                         itemBuilder: (context, index2) {
@@ -89,14 +89,14 @@ class _ViewMarksState extends State<ViewMarks> {
                             title: AutoSizeText(
                               "Sessional ${index2+1}",
                               style: GoogleFonts.tiltNeon(
-                                  fontSize: size.width*0.05,
+                                  fontSize: size.width*0.01,
                                   color: Colors.black
                               ),
                             ),
                             trailing: AutoSizeText(
                              "${ snapshot.data?.docs[index].data()["Marks"][subject_filter]["Sessional_${index2+1}"]}/${snapshot.data?.docs[index].data()["Marks"][subject_filter]["Sessional_${index2+1}_total"]}",
                               style: GoogleFonts.tiltNeon(
-                                  fontSize: size.width*0.05,
+                                  fontSize: size.width*0.01,
                                   color: Colors.black
                               ),
                             ),

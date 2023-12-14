@@ -406,6 +406,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             );
           },
+          style: TextButton.styleFrom(alignment: Alignment.center,backgroundColor: Colors.black26),
           child: const Text("Sign In", style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,

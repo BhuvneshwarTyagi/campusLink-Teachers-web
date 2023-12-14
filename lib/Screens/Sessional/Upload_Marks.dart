@@ -76,6 +76,7 @@ class _UploadMarksState extends State<UploadMarks> {
             return snapshot.hasData
                 ?
             ListView.builder(
+              shrinkWrap: true,
               itemCount: snapshot.data?.docs.length,
               itemBuilder: (context, index) {
 
@@ -164,14 +165,14 @@ class _UploadMarksState extends State<UploadMarks> {
                         title: AutoSizeText(
                           snapshot.data?.docs[index].data()["Name"],
                           style: GoogleFonts.tiltNeon(
-                            fontSize: size.width*0.015,
+                            fontSize: size.width*0.01,
                             color: Colors.black
                           ),
                         ),
                         subtitle: AutoSizeText(
                           snapshot.data?.docs[index].data()["Rollnumber"],
                           style: GoogleFonts.tiltNeon(
-                              fontSize: size.width*0.01,
+                              fontSize: size.width*0.007,
                               color: Colors.black87
                           ),
                         ),

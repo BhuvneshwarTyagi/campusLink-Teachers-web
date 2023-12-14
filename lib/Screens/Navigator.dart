@@ -83,7 +83,7 @@ class _NeviState extends State<Nevi>  {
 
 
       appBar: AppBar(
-          elevation: 0,
+          elevation: 10,
 
           actions: [
             StreamBuilder(
@@ -229,7 +229,7 @@ class _NeviState extends State<Nevi>  {
 
                               ),
                             ),
-                            AutoSizeText("Assignment",style: GoogleFonts.tiltNeon(fontSize: size.height*0.02),),
+                            AutoSizeText("Assignment",style: GoogleFonts.tiltNeon(fontSize: size.height*0.025,fontWeight: FontWeight.w600),),
                           ],
                         ),
                       ),
@@ -256,7 +256,7 @@ class _NeviState extends State<Nevi>  {
                                 ),
                               ),
                             ),
-                            AutoSizeText("Notes",style: GoogleFonts.tiltNeon(fontSize: size.height*0.02),),
+                            AutoSizeText("Notes",style: GoogleFonts.tiltNeon(fontSize: size.height*0.025,fontWeight: FontWeight.w600),),
                           ],
                         ),
                       ),
@@ -437,7 +437,7 @@ class _NeviState extends State<Nevi>  {
                                 ),
                               ),
                             ),
-                            AutoSizeText("Attendence",style: GoogleFonts.tiltNeon(fontSize: size.height*0.02),),
+                            AutoSizeText("Attendence",style: GoogleFonts.tiltNeon(fontSize: size.height*0.025,fontWeight: FontWeight.w600),),
                           ],
                         ),
                       ),
@@ -467,7 +467,7 @@ class _NeviState extends State<Nevi>  {
                                 ),
                               ),
                             ),
-                            AutoSizeText("Marks",style: GoogleFonts.tiltNeon(fontSize: size.height*0.02),),
+                            AutoSizeText("Marks",style: GoogleFonts.tiltNeon(fontSize: size.height*0.025,fontWeight: FontWeight.w600),),
                           ],
                         ),
                       ),
@@ -495,7 +495,7 @@ class _NeviState extends State<Nevi>  {
                                 ),
                               ),
                             ),
-                            AutoSizeText("LeaderBoard",style: GoogleFonts.tiltNeon(fontSize: size.height*0.02),),
+                            AutoSizeText("LeaderBoard",style: GoogleFonts.tiltNeon(fontSize: size.height*0.025,fontWeight: FontWeight.w600),),
                           ],
                         ),
                       ),
@@ -506,12 +506,13 @@ class _NeviState extends State<Nevi>  {
                 AnimatedPositioned(
                   height: size.height*0.055,
                   left: slider,
+
                   duration: const Duration(milliseconds: 300),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        width: size.width*0.12,
+                        width: size.width*0.1,
                         height: size.height*0.0055,
                         decoration: const BoxDecoration(
 
@@ -525,7 +526,7 @@ class _NeviState extends State<Nevi>  {
                         ),
                       ),
                       Container(
-                        width: size.width*0.12,
+                        width: size.width*0.1,
                         height: size.height*0.0055,
                         decoration: const BoxDecoration(
                             gradient: LinearGradient(
@@ -549,10 +550,9 @@ class _NeviState extends State<Nevi>  {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
            SizedBox(
         height: size.height*0.8,
-        width: size.width*0.14,
+        width: size.width*0.22,
         child: ListView(
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
@@ -778,7 +778,7 @@ class _NeviState extends State<Nevi>  {
       ),
 
           SizedBox(
-          width: size.width*0.6,
+          width: size.width*0.56,
           child: screens[index]),
           SizedBox(
               width: size.width*0.22,

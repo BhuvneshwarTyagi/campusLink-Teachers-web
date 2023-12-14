@@ -116,7 +116,7 @@ class _chatsystemState extends State<chatsystem> {
             child: Center(
               child: AutoSizeText("Please add subject first.",style: GoogleFonts.aBeeZee(
                 color: Colors.white,
-                fontSize: size.height*0.035,
+                fontSize: size.height*0.015,
                 fontWeight: FontWeight.w600
               ),)
             ),
@@ -125,9 +125,10 @@ class _chatsystemState extends State<chatsystem> {
             :
         Container(
           color: Colors.transparent,
-          height: size.height*0.92,
+          height: size.height*0.9,
 
           child: ListView.builder(
+            shrinkWrap: true,
             scrollDirection: Axis.vertical,
             reverse: true,
             itemCount: usermodel["Message_channels"].length,
@@ -172,13 +173,16 @@ class _chatsystemState extends State<chatsystem> {
                       },
                       child: SizedBox(
                         height: size.height*0.11,
+                        width: size.width*0.22,
                         child:  Card(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
+                              SizedBox(width: size.width*0.005,),
                               CircleAvatar(
                                 backgroundColor: const Color.fromRGBO(86, 149, 178, 1),
-                                radius: size.width*0.015,
+                                maxRadius: size.width*0.015,
+                                minRadius: size.width*0.01,
                                 backgroundImage: (profileUrl != "null" || profileUrl!="") ? NetworkImage(profileUrl) : null,
                                 child: (profileUrl == "null" || profileUrl == "")
                                     ?
@@ -199,7 +203,7 @@ class _chatsystemState extends State<chatsystem> {
                                 children: [
                                   AutoSizeText(
                                     Name,
-                                    style: GoogleFonts.tiltNeon(color: Colors.black,fontSize: size.width*0.01,fontWeight: FontWeight.w600),
+                                    style: GoogleFonts.tiltNeon(color: Colors.black,fontSize: size.width*0.004,fontWeight: FontWeight.w600),
                                   ),
                                   Row(
                                     children: [
@@ -220,21 +224,23 @@ class _chatsystemState extends State<chatsystem> {
                                         }",
                                           style: GoogleFonts.tiltNeon(
                                               color: Colors.black.withOpacity(0.80),
-                                              fontSize: size.width*0.01,
+                                              fontSize: size.width*0.001,
                                               fontWeight: FontWeight.w500
                                           ),
                                           textAlign: TextAlign.left,
                                         ),
                                       ),
+                                      SizedBox(width: size.width*0.005,),
                                       readCount - count>0
                                           ?
                                       CircleAvatar(
-                                        radius: size.width*0.03,
+                                        minRadius: size.width*0.0007,
+                                        maxRadius: size.width*0.007,
                                         backgroundColor: Colors.green,
                                         child: AutoSizeText("${readCount - count}",
                                           style: GoogleFonts.tiltNeon(
                                               color: Colors.white,
-                                              fontSize: size.width*0.01,
+                                              fontSize: size.width*0.007,
                                               fontWeight: FontWeight.w500
                                           ),
                                           textAlign: TextAlign.left,
@@ -264,9 +270,11 @@ class _chatsystemState extends State<chatsystem> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
+                              SizedBox(width: size.width*0.005,),
                               CircleAvatar(
                                 backgroundColor: const Color.fromRGBO(86, 149, 178, 1),
-                                radius: size.width*0.015,
+                                maxRadius: size.width*0.015,
+                                minRadius: size.width*0.01,
                                 backgroundImage: (snapshot.data!.data()!["image_URL"]!="null" && snapshot.data!.data()!["image_URL"]!=null)? NetworkImage(snapshot.data!.data()!["image_URL"]) : null,
                                 child: (snapshot.data?.data()!["image_URL"] == "null" || snapshot.data!.data()!["image_URL"] ==null)
                                     ?
@@ -282,15 +290,16 @@ class _chatsystemState extends State<chatsystem> {
 
                               SizedBox(width: size.width*0.005),
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   AutoSizeText(
                                   usermodel["Message_channels"][index],
-                                    style: GoogleFonts.tiltNeon(color: Colors.black,fontSize: size.width*0.01,fontWeight: FontWeight.w600),
+                                    style: GoogleFonts.tiltNeon(color: Colors.black,fontSize: size.width*0.004,fontWeight: FontWeight.w600),
                                   ),
                                   Row(
                                     children: [
+
                                       SizedBox(
                                         width: size.width*0.1,
                                         child: AutoSizeText("${
@@ -308,21 +317,23 @@ class _chatsystemState extends State<chatsystem> {
                                         }",
                                           style: GoogleFonts.tiltNeon(
                                               color: Colors.black.withOpacity(0.80),
-                                              fontSize: size.width*0.01,
-                                              fontWeight: FontWeight.w500
+                                              fontSize: size.width*0.006,
+
                                           ),
                                           textAlign: TextAlign.left,
                                         ),
                                       ),
+                                      SizedBox(width: size.width*0.05,),
                                       readCount - count>0
                                           ?
                                       CircleAvatar(
-                                        radius: size.width*0.015,
                                         backgroundColor: Colors.green,
+                                        minRadius: size.width*0.0007,
+                                        maxRadius: size.width*0.007,
                                         child: AutoSizeText("${readCount - count}",
                                           style: GoogleFonts.tiltNeon(
                                               color: Colors.white,
-                                              fontSize: size.width*0.01,
+                                              fontSize: size.width*0.007,
                                               fontWeight: FontWeight.w500
                                           ),
                                           textAlign: TextAlign.left,

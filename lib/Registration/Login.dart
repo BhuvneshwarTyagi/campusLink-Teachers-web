@@ -300,10 +300,11 @@ class _SignInScreenState extends State<SignInScreen> {
                     shape:OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
                     child: ListTile(
                       dense:true,
+
                       contentPadding: const EdgeInsets.symmetric(vertical:0),
                       shape: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30)),
-                      tileColor: Colors.black,
+                      tileColor: Colors.black26,
                       onTap: () async {
                         await FirebaseFirestore.instance
                             .collection("Teacher_record")
@@ -375,6 +376,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         maxLines: 1,
                         textAlign: TextAlign.center,
                       ),
+                      titleAlignment: ListTileTitleAlignment.center,
 
                     ),
                   ),
@@ -418,7 +420,7 @@ class _SignInScreenState extends State<SignInScreen> {
               width: MediaQuery.of(context).size.width * 0.3,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
-                border: Border.all(color: Colors.black54, width: 2),
+                border: Border.all(color: Colors.black, width: 2),
               ),
               child: ListTile(
                 dense: true,

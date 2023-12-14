@@ -149,13 +149,11 @@ class TopThree extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                      bottom: 145,
-                        left: 75,
-                        child: CircleAvatar(
-                          radius: size.width * 0.02,
-                          backgroundColor: Colors.transparent,
-                          child: Image.asset("assets/images/Goldcrown.png")
-                        ),
+                      top: size.width*0.005,
+                        left: size.width*0.05,
+                        child: SizedBox(
+                            height: size.height*0.05,
+                            child: Image.asset("assets/images/Goldcrown.png")),
                       ),
                     ],
                   ),
@@ -190,17 +188,20 @@ class TopThree extends StatelessWidget {
             width: size.width * 0.044,
           ),
           SizedBox(
+
             width: size.width * 0.15,
+            height: size.height*0.45,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Container(
-               
-                  height: size.height*0.45,
+                SizedBox(
+
+                  height: size.height*0.25,
                   child: Stack(
                     children: [
                       Positioned(
                         bottom: 0,
-                        left: 10,
+                        left: size.height*0.001,
                         child: StreamBuilder(
                           stream: FirebaseFirestore.instance.collection("Students").doc(data[2]["Email"]).snapshots(),
                           builder: (context, snapshot) {
@@ -232,18 +233,16 @@ class TopThree extends StatelessWidget {
                       ),
 
                       Positioned(
-                        bottom: 155,
-                        left: 60,
-                        child: CircleAvatar(
-                          radius: size.width * 0.02,
-                          backgroundColor: Colors.transparent,
-                          child:Transform(
-                              transform: Matrix4.identity()
-                                ..setEntry(3, 2, 0.001) // Perspective
-                                ..rotateY(-0.3), // Adjust the rotateY value for right tilt
-                              alignment: FractionalOffset.center,
-                              child: Image.asset("assets/images/Browncrown.png")),
-                        ),
+                        left: size.width*0.045,
+                        bottom: size.width*0.1,
+                        child: Transform(
+                            transform: Matrix4.identity()
+                              ..setEntry(3, 2, 0.001) // Perspective
+                              ..rotateY(-0.3), // Adjust the rotateY value for right tilt
+                            alignment: FractionalOffset.center,
+                            child: SizedBox(
+                                height: size.height*0.05,
+                                child: Image.asset("assets/images/Browncrown.png"))),
                       ),
                     ],
                   ),

@@ -36,33 +36,29 @@ class _AssignmentTileState extends State<AssignmentTile> {
       backgroundColor: Colors.transparent,
       floatingActionButton: Container(
         decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Colors.blue, Colors.purpleAccent],
-            ),
-            borderRadius: const BorderRadius.all(Radius.circular(20)),
+            color: Colors.blueGrey,
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
             border: Border.all(color: Colors.black, width: 1)
         ),
-        width: size.width * 0.36,
-        height: size.height * 0.05,
+        width: size.width * 0.12,
+        height: size.height * 0.07,
         child: FloatingActionButton(
           backgroundColor: Colors.transparent,
           elevation: 0,
           child:  Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image.asset("assets/images/upload-icon.png",),
+              Image.asset("assets/images/upload-icon.png",height: size.height*0.04,width: size.width*0.02,),
               // const Icon(
               //   Icons.upload,
               //   color: Colors.white70,
               // ),
-              SizedBox(width: size.width*0.02,),
+              SizedBox(width: size.width*0.005,),
               AutoSizeText("Upload File",style: GoogleFonts.tiltNeon(
                   color: Colors.black,
                   //const Color.fromRGBO(150, 150, 150, 1),
                   fontWeight: FontWeight.w500,
-                  fontSize: size.width*0.035),
+                  fontSize: size.width*0.01),
               ),
             ],
           ),
@@ -88,13 +84,18 @@ class _AssignmentTileState extends State<AssignmentTile> {
                   ),
             )
                 :
-            Navigator.push(context, PageTransition(
-              child: const AssigmentQuestion(),
-              type: PageTransitionType.bottomToTopJoined,
-              duration: const Duration(milliseconds: 300),
-              childCurrent: const AssignmentsUpload(),
-
-            ));
+            showDialog(
+              context: context,
+              builder: (ctx) =>
+              AssigmentQuestion(),
+            );
+            // Navigator.push(context, PageTransition(
+            //   child: const AssigmentQuestion(),
+            //   type: PageTransitionType.bottomToTopJoined,
+            //   duration: const Duration(milliseconds: 300),
+            //   childCurrent: const AssignmentsUpload(),
+            //
+            // ));
           },
         ),
       ),

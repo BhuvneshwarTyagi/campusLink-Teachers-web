@@ -178,15 +178,41 @@ class _NeviState extends State<Nevi>  {
               },),
             IconButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  PageTransition(
-                    child: const Filters(),
-                    type: PageTransitionType.bottomToTopJoined,
-                    duration: const Duration(milliseconds: 200),
-                    childCurrent: const Attendance(),
-                  ),
+                subject_filter.isEmpty
+                    ?
+                showDialog(
+                  context: context,
+                  builder: (ctx) =>
+                      AlertDialog(
+
+                        title: const Text("Do You Want to Upload Assignment"),
+                        content: const Text("Please Apply Filter First"),
+                        actions: <Widget>[
+                          TextButton(
+
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text("okay"),
+                          ),
+                        ],
+                      ),
+                )
+                    :
+                showDialog(
+                  context: context,
+                  builder: (ctx) =>
+                      Filters(),
                 );
+                // Navigator.push(
+                //   context,
+                //   PageTransition(
+                //     child: const Filters(),
+                //     type: PageTransitionType.bottomToTopJoined,
+                //     duration: const Duration(milliseconds: 200),
+                //     childCurrent: const Attendance(),
+                //   ),
+                // );
               },
               icon: const Icon(Icons.filter_list_alt),
             )
@@ -553,7 +579,7 @@ class _NeviState extends State<Nevi>  {
         children: [
            SizedBox(
         height: size.height*0.8,
-        width: size.width*0.22,
+        width: size.width*0.24,
         child: ListView(
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
@@ -779,10 +805,10 @@ class _NeviState extends State<Nevi>  {
       ),
 
           SizedBox(
-          width: size.width*0.56,
+          width: size.width*0.40,
           child: screens[index]),
           SizedBox(
-              width: size.width*0.22,
+              width: size.width*0.26,
               child: const chatsystem()),
 
 

@@ -33,9 +33,9 @@ class _AssignmentsUploadState extends State<AssignmentsUpload> with TickerProvid
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        toolbarHeight: size.height*0.07,
+        toolbarHeight: size.height*0.09,
         flexibleSpace: SizedBox(
-          height: size.height * 0.11,
+          height: size.height * 0.15,
           width: size.width * 1,
           child: Column(
             children: [
@@ -60,9 +60,7 @@ class _AssignmentsUploadState extends State<AssignmentsUpload> with TickerProvid
                           width: size.width*0.1,
                           child: Image.asset("assets/images/assignment.png"),
                         ),
-                        SizedBox(
-                          width: size.width*0.02,
-                        ),
+
                         FittedBox(
                           fit: BoxFit.cover,
                           child: AutoSizeText(

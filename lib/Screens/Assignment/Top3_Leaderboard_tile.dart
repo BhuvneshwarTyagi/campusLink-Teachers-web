@@ -13,17 +13,18 @@ class TopThree extends StatelessWidget {
 
       height: size.height*0.55,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
-
-            width: size.width * 0.15,
+            width: size.width * 0.1333,
             height: size.height*0.45,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
               SizedBox(
 
-                height: size.height*0.25,
+                height: size.height*0.28,
                 child: Stack(children: [
                   Positioned(
                     bottom: 0,
@@ -35,12 +36,12 @@ class TopThree extends StatelessWidget {
                               ?
                           CircleAvatar(
                               backgroundColor: Colors.black,
-                              radius: size.width * 0.054,
+                              radius: size.width * 0.044,
                               child: snapshot.data!.data()?['Profile_URL'] != null && snapshot.data!.data()?['Profile_URL'] != "null"
                                   ?
                               CircleAvatar(
                                 backgroundColor: Colors.green[600],
-                                radius: size.width * 0.05,
+                                radius: size.width * 0.04,
                                 backgroundImage: NetworkImage(
                                   snapshot.data!.data()?['Profile_URL'],
                                 ),
@@ -48,7 +49,7 @@ class TopThree extends StatelessWidget {
                                   :
                               CircleAvatar(
                                 backgroundColor: Colors.green[600],
-                                radius: size.width * 0.05,
+                                radius: size.width * 0.04,
                                 backgroundImage: const AssetImage("assets/images/unknown.png"),
                               )
 
@@ -60,12 +61,12 @@ class TopThree extends StatelessWidget {
                   ),
                   Positioned(
 
-                    left: size.width*0.045,
-                    bottom: size.width*0.1,
-                    child: Transform(
+                    left: size.width*0.025,
+                    bottom: size.width*0.087,
+                    child: Transform.rotate(
 
-                        transform: Matrix4.skewX(-0.2),
 
+                        angle: -0.15,
                         child: SizedBox(
                             height: size.height*0.05,
                             child: Image.asset("assets/images/Silvercrown.png"))),
@@ -76,43 +77,43 @@ class TopThree extends StatelessWidget {
               SizedBox(
                 height: size.height*0.01,
               ),
-              Center(
-                child: SizedBox(
-                  width: size.width * 0.2,
-                  child: AutoSizeText(
-                    data[1]["Name"]
-                    ,
-                    style: GoogleFonts.tiltNeon(
-                        fontSize: size.width*0.015,
-                        color: Colors.black
-                    ),
-
-                    textAlign: TextAlign.center,
+              SizedBox(
+                width: size.width * 0.1,
+                child: AutoSizeText(
+                  data[1]["Name"]
+                  ,
+                  style: GoogleFonts.tiltNeon(
+                      fontSize: size.width*0.015,
+                      color: Colors.black
                   ),
+
+                  textAlign: TextAlign.center,
                 ),
               ),
-              AutoSizeText(
-                "${(data[1]["Submitted"]*100).toStringAsFixed(2)} %",
-                style: const TextStyle(
-                  color: Color.fromARGB(255, 10, 52, 84),
-                  fontWeight: FontWeight.w500,
+              Padding(
+                padding: const EdgeInsets.only(left: 50.0),
+                child: AutoSizeText(
+                  "${(data[1]["Submitted"]*100).toStringAsFixed(2)} %",
+                  style: const TextStyle(
+                    color: Color.fromARGB(255, 10, 52, 84),
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ],
             ),
           ),
 
+          SizedBox(
 
-          SizedBox(
-            width: size.width * 0.04,
-          ),
-          SizedBox(
-            width: size.width * 0.15,
+            width: size.width * 0.1333,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
 
-                  height: size.height*0.27,
+                  height: size.height*0.24,
                   child: Stack(
                     children: [
                       Positioned(
@@ -125,13 +126,13 @@ class TopThree extends StatelessWidget {
                               return snapshot.hasData
                                   ?
                               CircleAvatar(
-                                  radius: size.width * 0.054,
+                                  radius: size.width * 0.044,
                                   backgroundColor: Colors.black,
                                   child:  snapshot.data!.data()?['Profile_URL'] != null && snapshot.data!.data()?['Profile_URL'] != "null"
                                       ?
                                   CircleAvatar(
                                     backgroundColor: Colors.green[600],
-                                    radius: size.width * 0.05,
+                                    radius: size.width * 0.04,
                                     backgroundImage: NetworkImage(snapshot.data!.data()?['Profile_URL'])
 
                                     ,
@@ -139,7 +140,7 @@ class TopThree extends StatelessWidget {
                                       :
                                   CircleAvatar(
                                     backgroundColor: Colors.green[600],
-                                    radius: size.width * 0.05,
+                                    radius: size.width * 0.04,
                                     backgroundImage: const AssetImage("assets/images/unknown.png"),
                                   )
                               )
@@ -149,8 +150,8 @@ class TopThree extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                      top: size.width*0.005,
-                        left: size.width*0.05,
+                      top: size.width*0.0047,
+                        left: size.width*0.038,
                         child: SizedBox(
                             height: size.height*0.05,
                             child: Image.asset("assets/images/Goldcrown.png")),
@@ -159,20 +160,14 @@ class TopThree extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: size.height*0.01,
-                ),
-                Center(
-                  child: SizedBox(
-                    width: size.width * 0.24,
-                    child: AutoSizeText(
-                      data[0]["Name"],
-                      style: GoogleFonts.tiltNeon(
-                        color: Colors.black,
-                        fontSize: size.width * 0.015,
-                      ),
-                      maxLines: 2,
-                      textAlign: TextAlign.center,
+                  width: size.width * 0.1,
+                  child: AutoSizeText(
+                    data[0]["Name"],
+                    style: GoogleFonts.tiltNeon(
+                      color: Colors.black,
+                      fontSize: size.width * 0.015,
                     ),
+                    maxLines: 2,
                   ),
                 ),
                 AutoSizeText( "${(data[0]["Submitted"]*100).toStringAsFixed(2)} %",
@@ -185,18 +180,16 @@ class TopThree extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: size.width * 0.044,
-          ),
-          SizedBox(
 
-            width: size.width * 0.15,
+            width: size.width * 0.1333,
             height: size.height*0.45,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
 
-                  height: size.height*0.25,
+                  height: size.height*0.3,
                   child: Stack(
                     children: [
                       Positioned(
@@ -210,17 +203,17 @@ class TopThree extends StatelessWidget {
                                   ?
                               CircleAvatar(
                                 backgroundColor: Colors.black,
-                                radius: size.width * 0.054,
+                                radius: size.width * 0.044,
                                 child:  snapshot.data!.data()?['Profile_URL'] != null && snapshot.data!.data()?['Profile_URL'] != "null"
                                     ?
                                 CircleAvatar(
-                                    radius: size.width * 0.05,
+                                    radius: size.width * 0.04,
                                     backgroundColor: Colors.green[600],
                                     backgroundImage: NetworkImage(snapshot.data!.data()?['Profile_URL'])
                                 )
                                     :
                                 CircleAvatar(
-                                    radius: size.width * 0.05,
+                                    radius: size.width * 0.04,
                                     backgroundColor: Colors.green[600],
                                     backgroundImage: const AssetImage("assets/images/unknown.png")
 
@@ -233,13 +226,11 @@ class TopThree extends StatelessWidget {
                       ),
 
                       Positioned(
-                        left: size.width*0.045,
-                        bottom: size.width*0.1,
-                        child: Transform(
-                            transform: Matrix4.identity()
-                              ..setEntry(3, 2, 0.001) // Perspective
-                              ..rotateY(-0.3), // Adjust the rotateY value for right tilt
-                            alignment: FractionalOffset.center,
+                        left: size.width*0.03,
+                        bottom: size.width*0.085,
+                        child: Transform.rotate(
+                          
+                            angle: -0.2,
                             child: SizedBox(
                                 height: size.height*0.05,
                                 child: Image.asset("assets/images/Browncrown.png"))),
@@ -250,27 +241,28 @@ class TopThree extends StatelessWidget {
                 SizedBox(
                   height: size.height*0.01,
                 ),
-                Center(
-                  child: SizedBox(
-                    width: size.width * 0.2,
-                    child: AutoSizeText(
-                      data[2]["Name"]
-                      ,
-                      style: GoogleFonts.tiltNeon(
-                        color: Colors.black,
-                        fontSize: size.width * 0.015,
-                      ),
-                      maxLines: 2,
-                      textAlign: TextAlign.center,
+                SizedBox(
+                  width: size.width * 0.1,
+                  child: AutoSizeText(
+                    data[2]["Name"]
+                    ,
+                    style: GoogleFonts.tiltNeon(
+                      color: Colors.black,
+                      fontSize: size.width * 0.015,
                     ),
+                    maxLines: 2,
+                    textAlign: TextAlign.center,
                   ),
                 ),
-                AutoSizeText(
+                Padding(
+                  padding: const EdgeInsets.only(left: 50.0),
+                  child: AutoSizeText(
     "${(data[2]["Submitted"]*100).toStringAsFixed(2)} %",
-                    style: const TextStyle(
-                        color: Color.fromARGB(255, 10, 52, 84),
-                        fontWeight: FontWeight.w500,
-                    ),
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 10, 52, 84),
+                          fontWeight: FontWeight.w500,
+                      ),
+                  ),
                 ),
               ],
             ),

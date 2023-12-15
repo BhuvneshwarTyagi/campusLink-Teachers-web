@@ -157,368 +157,371 @@ class _SessionalState extends State<Sessional> with TickerProviderStateMixin{
                       )
                     ],
                 ),
-                SizedBox(
-                  width: size.width,
-                  height: size.height,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SizedBox(
-                        width: size.width*0.08,
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: SizedBox(
+                    width: size.width*0.56,
+                    height: size.height,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: size.width*0.08,
 
-                        child: Card(
-                          color: Colors.white,
+                          child: Card(
+                            color: Colors.white,
 
-                          child: ExpansionTile(
-                            controller: subjectController,
-                            title: AutoSizeText(
-                              snapshot.data!.data()?["Subject-$selectedUniversity$selectedCollege$selectedCourse$selectedBranch$selectedYear$selectedSection"][selectedSubject],
-                              style: GoogleFonts.tiltNeon(
-                                  color: Colors.black,
-                                  fontSize: size.width*0.02,
-                                  fontWeight: FontWeight.w500
+                            child: ExpansionTile(
+                              controller: subjectController,
+                              title: AutoSizeText(
+                                snapshot.data!.data()?["Subject-$selectedUniversity$selectedCollege$selectedCourse$selectedBranch$selectedYear$selectedSection"][selectedSubject],
+                                style: GoogleFonts.tiltNeon(
+                                    color: Colors.black,
+                                    fontSize: size.width*0.02,
+                                    fontWeight: FontWeight.w500
+                                ),
+                                maxLines: 1,
                               ),
-                              maxLines: 1,
-                            ),
 
 
-                            children: [
-                              ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: snapshot.data!.data()?["Subject-$selectedUniversity$selectedCollege$selectedCourse$selectedBranch$selectedYear$selectedSubject"].length,
-                                itemBuilder: (context, index) {
-                                  return ListTile(
-                                    title: AutoSizeText(
-                                      snapshot.data!.data()?["Subject-$selectedUniversity$selectedCollege$selectedCourse$selectedBranch$selectedYear$selectedSubject"][index],
-                                      style: GoogleFonts.tiltNeon(
-                                          color: Colors.black,
-                                          fontSize: size.width*0.01,
-                                          fontWeight: FontWeight.w500
+                              children: [
+                                ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: snapshot.data!.data()?["Subject-$selectedUniversity$selectedCollege$selectedCourse$selectedBranch$selectedYear$selectedSubject"].length,
+                                  itemBuilder: (context, index) {
+                                    return ListTile(
+                                      title: AutoSizeText(
+                                        snapshot.data!.data()?["Subject-$selectedUniversity$selectedCollege$selectedCourse$selectedBranch$selectedYear$selectedSubject"][index],
+                                        style: GoogleFonts.tiltNeon(
+                                            color: Colors.black,
+                                            fontSize: size.width*0.01,
+                                            fontWeight: FontWeight.w500
+                                        ),
+                                        maxLines: 1,
                                       ),
-                                      maxLines: 1,
-                                    ),
-                                    onTap: (){
-                                      setState(() {
-                                        subjectController.collapse();
-                                        selectedSubject = index;
+                                      onTap: (){
+                                        setState(() {
+                                          subjectController.collapse();
+                                          selectedSubject = index;
 
-                                      });
+                                        });
+                                      },
+                                    );
+                                  },
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: size.width*0.08,
+
+
+                          child: Card(
+                            color: Colors.white,
+                            child: ExpansionTile(
+                              controller: sectionController,
+                              title: AutoSizeText(
+                                snapshot.data!.data()?["Section-$selectedUniversity$selectedCollege$selectedCourse$selectedBranch$selectedYear"][selectedSection],
+                                style: GoogleFonts.tiltNeon(
+                                    color: Colors.black,
+                                    fontSize: size.width*0.015,
+                                    fontWeight: FontWeight.w500
+                                ),
+                                maxLines: 1,
+                              ),
+
+                              children: [
+                                SizedBox(
+                                  width: size.width*0.15,
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: snapshot.data!.data()?["Section-$selectedUniversity$selectedCollege$selectedCourse$selectedBranch$selectedYear"].length,
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+
+                                        title: AutoSizeText(
+                                          snapshot.data!.data()?["Section-$selectedUniversity$selectedCollege$selectedCourse$selectedBranch$selectedYear"][index],
+                                          style: GoogleFonts.tiltNeon(
+                                              color: Colors.black,
+                                              fontSize: size.width*0.015,
+                                              fontWeight: FontWeight.w500
+                                          ),
+                                          maxLines: 1,
+                                        ),
+                                        onTap: (){
+                                          setState(() {
+                                            sectionController.collapse();
+                                            selectedSection = index;
+
+                                          });
+                                        },
+                                      );
                                     },
-                                  );
-                                },
-                              ),
-
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: size.width*0.08,
-
-
-                        child: Card(
-                          color: Colors.white,
-                          child: ExpansionTile(
-                            controller: sectionController,
-                            title: AutoSizeText(
-                              snapshot.data!.data()?["Section-$selectedUniversity$selectedCollege$selectedCourse$selectedBranch$selectedYear"][selectedSection],
-                              style: GoogleFonts.tiltNeon(
-                                  color: Colors.black,
-                                  fontSize: size.width*0.015,
-                                  fontWeight: FontWeight.w500
-                              ),
-                              maxLines: 1,
-                            ),
-
-                            children: [
-                              SizedBox(
-                                width: size.width*0.15,
-                                child: ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: snapshot.data!.data()?["Section-$selectedUniversity$selectedCollege$selectedCourse$selectedBranch$selectedYear"].length,
-                                  itemBuilder: (context, index) {
-                                    return ListTile(
-
-                                      title: AutoSizeText(
-                                        snapshot.data!.data()?["Section-$selectedUniversity$selectedCollege$selectedCourse$selectedBranch$selectedYear"][index],
-                                        style: GoogleFonts.tiltNeon(
-                                            color: Colors.black,
-                                            fontSize: size.width*0.015,
-                                            fontWeight: FontWeight.w500
-                                        ),
-                                        maxLines: 1,
-                                      ),
-                                      onTap: (){
-                                        setState(() {
-                                          sectionController.collapse();
-                                          selectedSection = index;
-
-                                        });
-                                      },
-                                    );
-                                  },
+                                  ),
                                 ),
-                              ),
 
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: size.width*0.08,
-
-
-                        child: Card(
-                          color: Colors.white,
-                          child: ExpansionTile(
-                            controller: yearController,
-                            title: AutoSizeText(
-                              snapshot.data!.data()?["Year-$selectedUniversity$selectedCollege$selectedCourse$selectedBranch"][selectedYear],
-                              style: GoogleFonts.tiltNeon(
-                                  color: Colors.black,
-                                  fontSize: size.width*0.015,
-                                  fontWeight: FontWeight.w500
-                              ),
-                              maxLines: 1,
+                              ],
                             ),
-
-                            children: [
-                              SizedBox(
-                                width: size.width*0.15,
-                                child: ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: snapshot.data!.data()?["Year-$selectedUniversity$selectedCollege$selectedCourse$selectedBranch"].length,
-                                  itemBuilder: (context, index) {
-                                    return ListTile(
-                                      title: AutoSizeText(
-                                        snapshot.data!.data()?["Year-$selectedUniversity$selectedCollege$selectedCourse$selectedBranch"][index],
-                                        style: GoogleFonts.tiltNeon(
-                                            color: Colors.black,
-                                            fontSize: size.width*0.015,
-                                            fontWeight: FontWeight.w500
-                                        ),
-                                        maxLines: 1,
-                                      ),
-                                      onTap: (){
-                                        setState(() {
-                                          yearController.collapse();
-                                          selectedYear = index;
-
-                                        });
-                                      },
-                                    );
-                                  },
-                                ),
-                              ),
-
-                            ],
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: size.width*0.08,
+                        SizedBox(
+                          width: size.width*0.08,
 
 
-                        child: Card(
-                          color: Colors.white,
-                          child: ExpansionTile(
-                            controller: branchController,
-                            title: AutoSizeText(
-                              snapshot.data!.data()?["Branch-$selectedUniversity$selectedCollege$selectedCourse"][selectedBranch],
-                              style: GoogleFonts.tiltNeon(
-                                  color: Colors.black,
-                                  fontSize: size.width*0.015,
-                                  fontWeight: FontWeight.w500
+                          child: Card(
+                            color: Colors.white,
+                            child: ExpansionTile(
+                              controller: yearController,
+                              title: AutoSizeText(
+                                snapshot.data!.data()?["Year-$selectedUniversity$selectedCollege$selectedCourse$selectedBranch"][selectedYear],
+                                style: GoogleFonts.tiltNeon(
+                                    color: Colors.black,
+                                    fontSize: size.width*0.015,
+                                    fontWeight: FontWeight.w500
+                                ),
+                                maxLines: 1,
                               ),
-                              maxLines: 1,
+
+                              children: [
+                                SizedBox(
+                                  width: size.width*0.15,
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: snapshot.data!.data()?["Year-$selectedUniversity$selectedCollege$selectedCourse$selectedBranch"].length,
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+                                        title: AutoSizeText(
+                                          snapshot.data!.data()?["Year-$selectedUniversity$selectedCollege$selectedCourse$selectedBranch"][index],
+                                          style: GoogleFonts.tiltNeon(
+                                              color: Colors.black,
+                                              fontSize: size.width*0.015,
+                                              fontWeight: FontWeight.w500
+                                          ),
+                                          maxLines: 1,
+                                        ),
+                                        onTap: (){
+                                          setState(() {
+                                            yearController.collapse();
+                                            selectedYear = index;
+
+                                          });
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ),
+
+                              ],
                             ),
-
-                            children: [
-                              SizedBox(
-                                width: size.width*0.25,
-                                child: ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: snapshot.data!.data()?["Branch-$selectedUniversity$selectedCollege$selectedCourse"].length,
-                                  itemBuilder: (context, index) {
-                                    return ListTile(
-                                      title: AutoSizeText(
-                                        snapshot.data!.data()?["Branch-$selectedUniversity$selectedCollege$selectedCourse"][index],
-                                        style: GoogleFonts.tiltNeon(
-                                            color: Colors.black,
-                                            fontSize: size.width*0.015,
-                                            fontWeight: FontWeight.w500
-                                        ),
-                                        maxLines: 1,
-                                      ),
-                                      onTap: (){
-                                        setState(() {
-                                          branchController.collapse();
-                                          selectedBranch = index;
-
-                                        });
-                                      },
-                                    );
-                                  },
-                                ),
-                              ),
-
-                            ],
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: size.width*0.08,
+                        SizedBox(
+                          width: size.width*0.08,
 
 
-                        child: Card(
-                          color: Colors.white,
-                          child: ExpansionTile(
-                            controller: courseController,
-                            title: AutoSizeText(
-                              snapshot.data!.data()?["Course-$selectedUniversity$selectedCollege"][selectedCourse],
-                              style: GoogleFonts.tiltNeon(
-                                  color: Colors.black,
-                                  fontSize: size.width*0.02,
-                                  fontWeight: FontWeight.w500
+                          child: Card(
+                            color: Colors.white,
+                            child: ExpansionTile(
+                              controller: branchController,
+                              title: AutoSizeText(
+                                snapshot.data!.data()?["Branch-$selectedUniversity$selectedCollege$selectedCourse"][selectedBranch],
+                                style: GoogleFonts.tiltNeon(
+                                    color: Colors.black,
+                                    fontSize: size.width*0.015,
+                                    fontWeight: FontWeight.w500
+                                ),
+                                maxLines: 1,
                               ),
-                              maxLines: 1,
+
+                              children: [
+                                SizedBox(
+                                  width: size.width*0.25,
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: snapshot.data!.data()?["Branch-$selectedUniversity$selectedCollege$selectedCourse"].length,
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+                                        title: AutoSizeText(
+                                          snapshot.data!.data()?["Branch-$selectedUniversity$selectedCollege$selectedCourse"][index],
+                                          style: GoogleFonts.tiltNeon(
+                                              color: Colors.black,
+                                              fontSize: size.width*0.015,
+                                              fontWeight: FontWeight.w500
+                                          ),
+                                          maxLines: 1,
+                                        ),
+                                        onTap: (){
+                                          setState(() {
+                                            branchController.collapse();
+                                            selectedBranch = index;
+
+                                          });
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ),
+
+                              ],
                             ),
-
-                            children: [
-                              SizedBox(
-                                width: size.width*0.25,
-                                child: ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: snapshot.data!.data()?["Course-$selectedUniversity$selectedCollege"].length,
-                                  itemBuilder: (context, index) {
-                                    return ListTile(
-                                      title: AutoSizeText(
-                                        snapshot.data!.data()?["Course-$selectedUniversity$selectedCollege"][index],
-                                        style: GoogleFonts.tiltNeon(
-                                            color: Colors.black,
-                                            fontSize: size.width*0.01,
-                                            fontWeight: FontWeight.w500
-                                        ),
-                                        maxLines: 1,
-                                      ),
-                                      onTap: (){
-                                        setState(() {
-                                          courseController.collapse();
-                                          selectedCourse = index;
-
-                                        });
-                                      },
-                                    );
-                                  },
-                                ),
-                              ),
-
-                            ],
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: size.width*0.08,
+                        SizedBox(
+                          width: size.width*0.08,
 
 
-                        child: Card(
-                          color: Colors.white,
-                          child: ExpansionTile(
-                            controller: collegeController,
-                            title: AutoSizeText(
-
-                              snapshot.data!.data()?["College-$selectedUniversity"][selectedCollege],
-                              style: GoogleFonts.tiltNeon(
-                                  color: Colors.black,
-                                  fontSize: size.width*0.015,
-                                  fontWeight: FontWeight.w500
+                          child: Card(
+                            color: Colors.white,
+                            child: ExpansionTile(
+                              controller: courseController,
+                              title: AutoSizeText(
+                                snapshot.data!.data()?["Course-$selectedUniversity$selectedCollege"][selectedCourse],
+                                style: GoogleFonts.tiltNeon(
+                                    color: Colors.black,
+                                    fontSize: size.width*0.02,
+                                    fontWeight: FontWeight.w500
+                                ),
+                                maxLines: 1,
                               ),
-                              maxLines: 1,
+
+                              children: [
+                                SizedBox(
+                                  width: size.width*0.25,
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: snapshot.data!.data()?["Course-$selectedUniversity$selectedCollege"].length,
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+                                        title: AutoSizeText(
+                                          snapshot.data!.data()?["Course-$selectedUniversity$selectedCollege"][index],
+                                          style: GoogleFonts.tiltNeon(
+                                              color: Colors.black,
+                                              fontSize: size.width*0.01,
+                                              fontWeight: FontWeight.w500
+                                          ),
+                                          maxLines: 1,
+                                        ),
+                                        onTap: (){
+                                          setState(() {
+                                            courseController.collapse();
+                                            selectedCourse = index;
+
+                                          });
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ),
+
+                              ],
                             ),
-
-                            children: [
-                              SizedBox(
-                                width: size.width*0.25,
-                                child: ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: snapshot.data!.data()?["College-$selectedUniversity"].length,
-                                  itemBuilder: (context, index) {
-                                    return ListTile(
-                                      title: AutoSizeText(
-                                        snapshot.data!.data()?["College-$selectedUniversity"][index],
-                                        style: GoogleFonts.tiltNeon(
-                                            color: Colors.black,
-                                            fontSize: size.width*0.01,
-                                            fontWeight: FontWeight.w500
-                                        ),
-                                        maxLines: 1,
-                                      ),
-                                      onTap: (){
-                                        setState(() {
-                                          collegeController.collapse();
-                                          selectedCollege = index;
-                                        });
-                                      },
-                                    );
-                                  },
-                                ),
-                              ),
-
-                            ],
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: size.width*0.08,
+                        SizedBox(
+                          width: size.width*0.08,
 
-                        child: Card(
-                          color: Colors.white,
-                          child: ExpansionTile(
-                            controller: universityController,
-                            title: AutoSizeText(
-                              snapshot.data!.data()?["University"][selectedUniversity],
-                              style: GoogleFonts.tiltNeon(
-                                  color: Colors.black,
-                                  fontSize: size.width*0.02,
-                                  fontWeight: FontWeight.w500
+
+                          child: Card(
+                            color: Colors.white,
+                            child: ExpansionTile(
+                              controller: collegeController,
+                              title: AutoSizeText(
+
+                                snapshot.data!.data()?["College-$selectedUniversity"][selectedCollege],
+                                style: GoogleFonts.tiltNeon(
+                                    color: Colors.black,
+                                    fontSize: size.width*0.015,
+                                    fontWeight: FontWeight.w500
+                                ),
+                                maxLines: 1,
                               ),
-                              maxLines: 1,
+
+                              children: [
+                                SizedBox(
+                                  width: size.width*0.25,
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: snapshot.data!.data()?["College-$selectedUniversity"].length,
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+                                        title: AutoSizeText(
+                                          snapshot.data!.data()?["College-$selectedUniversity"][index],
+                                          style: GoogleFonts.tiltNeon(
+                                              color: Colors.black,
+                                              fontSize: size.width*0.01,
+                                              fontWeight: FontWeight.w500
+                                          ),
+                                          maxLines: 1,
+                                        ),
+                                        onTap: (){
+                                          setState(() {
+                                            collegeController.collapse();
+                                            selectedCollege = index;
+                                          });
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ),
+
+                              ],
                             ),
-                            children: [
-                              SizedBox(
-                                width: size.width*0.25,
-                                child: ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: snapshot.data!.data()?["University"].length,
-                                  itemBuilder: (context, index) {
-                                    return ListTile(
-                                      title: AutoSizeText(
-                                        snapshot.data!.data()?["University"][index],
-                                        style: GoogleFonts.tiltNeon(
-                                            color: Colors.black,
-                                            fontSize: size.width*0.01,
-                                            fontWeight: FontWeight.w500
-                                        ),
-                                        maxLines: 1,
-                                      ),
-                                      onTap: (){
-                                        setState(() {
-                                          universityController.collapse();
-                                          selectedUniversity = index;
-
-                                        });
-                                      },
-                                    );
-                                  },
-                                ),
-                              ),
-
-                            ],
                           ),
                         ),
-                      ),
-                    ],
+                        SizedBox(
+                          width: size.width*0.08,
+
+                          child: Card(
+                            color: Colors.white,
+                            child: ExpansionTile(
+                              controller: universityController,
+                              title: AutoSizeText(
+                                snapshot.data!.data()?["University"][selectedUniversity],
+                                style: GoogleFonts.tiltNeon(
+                                    color: Colors.black,
+                                    fontSize: size.width*0.02,
+                                    fontWeight: FontWeight.w500
+                                ),
+                                maxLines: 1,
+                              ),
+                              children: [
+                                SizedBox(
+                                  width: size.width*0.25,
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: snapshot.data!.data()?["University"].length,
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+                                        title: AutoSizeText(
+                                          snapshot.data!.data()?["University"][index],
+                                          style: GoogleFonts.tiltNeon(
+                                              color: Colors.black,
+                                              fontSize: size.width*0.01,
+                                              fontWeight: FontWeight.w500
+                                          ),
+                                          maxLines: 1,
+                                        ),
+                                        onTap: (){
+                                          setState(() {
+                                            universityController.collapse();
+                                            selectedUniversity = index;
+
+                                          });
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 )
               ],

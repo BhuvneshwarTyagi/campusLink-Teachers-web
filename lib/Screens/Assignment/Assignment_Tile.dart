@@ -264,7 +264,7 @@ class _AssignmentTileState extends State<AssignmentTile> {
                                         const Divider(
                                           color: Colors.black26,
                                           height: 1.5,
-                                          endIndent: 5,
+                                          endIndent: 4,
                                           indent: 5,
                                           thickness: 1.5,
                                         ),
@@ -273,7 +273,7 @@ class _AssignmentTileState extends State<AssignmentTile> {
                                         const Divider(
                                           color: Colors.black26,
                                           height: 1.5,
-                                          endIndent: 5,
+                                          endIndent: 4,
                                           indent: 5,
                                           thickness: 1.5,
                                         ),
@@ -287,7 +287,7 @@ class _AssignmentTileState extends State<AssignmentTile> {
                                             ),
                                           ),
                                           leading: SizedBox(
-                                            width: size.width*0.02,
+                                            width: size.width*0.023,
                                             child: Image.asset("assets/images/leaderboard.png"),
                                           ),
                                           onTap: (){

@@ -20,6 +20,7 @@ class AssignmentTile extends StatefulWidget {
 }
 
 class _AssignmentTileState extends State<AssignmentTile> {
+  bool isExpanded = false;
 
   bool docExists = false;
 
@@ -48,6 +49,7 @@ class _AssignmentTileState extends State<AssignmentTile> {
           child:  Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              SizedBox(width: size.width*0.005,),
               Image.asset("assets/images/upload-icon.png",height: size.height*0.04,width: size.width*0.02,),
               // const Icon(
               //   Icons.upload,
@@ -99,7 +101,7 @@ class _AssignmentTileState extends State<AssignmentTile> {
           },
         ),
       ),
-      body: SizedBox(
+      body: Container(
           height: size.height,
           width: size.width,
           child: subject_filter.isEmpty ?
@@ -110,6 +112,7 @@ class _AssignmentTileState extends State<AssignmentTile> {
           docExists
               ?
           StreamBuilder(
+
               stream: FirebaseFirestore
                   .instance
                   .collection("Assignment")
@@ -121,191 +124,202 @@ class _AssignmentTileState extends State<AssignmentTile> {
                     ?
                     snapshot.data!.exists
                         ?
-                ListView.builder(
-                  itemCount: snapshot.data!["Total_Assignment"],
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    String sysPath= "/storage/emulated/0";
-                    String path="/Campus Link/$university_filter $college_filter $course_filter $branch_filter $year_filter $section_filter $subject_filter/Assignments/";
-                    String newpath =
-                        "$sysPath$path/Assignment-${index + 1}.${snapshot
-                        .data!["Assignment-${index + 1}"]["Document-type"]}";
 
-                    return InkWell(
-                      onTap: (){
-                        print("presseddddddddddddd");
-                        if( File(newpath).existsSync()) {
-                          if (snapshot.data!["Assignment-${index + 1}"]["Document-type"] == "pdf") {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder:
-                                      (context) =>
-                                      PdfViewer(
-                                        document:
-                                        newpath,
-                                        name:
-                                        "Assignment-${index + 1}",
-                                      ),
-                                ));
-                          }
-                          else {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder:
-                                      (context) =>
-                                      Image_viewer(path: File(
-                                          '${path}Assignment-${index +
-                                              1}.${snapshot
-                                              .data!["Assignment-${index +
-                                              1}"]["Document-type"]}'),
+                    ListView.builder(
+                        scrollDirection: Axis.vertical,
 
-                                      ),
-                                ));
-                          }
-                        }
-                      },
+                        shrinkWrap: true,
+                      itemCount: snapshot.data!["Total_Assignment"],
+                      itemBuilder: (context, index) {
+                        String sysPath= "/storage/emulated/0";
+                        String path="/Campus Link/$university_filter $college_filter $course_filter $branch_filter $year_filter $section_filter $subject_filter/Assignments/";
+                        String newpath =
+                            "$sysPath$path/Assignment-${index + 1}.${snapshot
+                            .data!["Assignment-${index + 1}"]["Document-type"]}";
 
-                      child: Card(
-                        borderOnForeground: true,
-                        shape: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Colors.black,
-                              width: 1.5,
-                          )
-                        ),
-                        child: Stack(
-                          children: [
-                            Column(
+
+                        return InkWell(
+                          onTap: (){
+                            print("presseddddddddddddd");
+                            if( File(newpath).existsSync()) {
+                              if (snapshot.data!["Assignment-${index + 1}"]["Document-type"] == "pdf") {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder:
+                                          (context) =>
+                                          PdfViewer(
+                                            document:
+                                            newpath,
+                                            name:
+                                            "Assignment-${index + 1}",
+                                          ),
+                                    ));
+                              }
+                              else {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder:
+                                          (context) =>
+                                          Image_viewer(path: File(
+                                              '${path}Assignment-${index +
+                                                  1}.${snapshot
+                                                  .data!["Assignment-${index +
+                                                  1}"]["Document-type"]}'),
+
+                                          ),
+                                    ));
+                              }
+                            }
+                          },
+                          child: Card(
+
+                            borderOnForeground: true,
+                            shape: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                  width: 1.5,
+                                )
+                            ),
+                            child: Stack(
                               children: [
-                                SizedBox(
-                                  height: size.height*0.1,
-                                  width: size.width,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      SizedBox(
-                                        height: size.height*0.01,
-                                      ),
-                                      AutoSizeText(
-                                        subject_filter,
-                                        style: GoogleFonts.tiltNeon(
-                                            color: Colors.black,
-                                            fontSize: size.height*0.03,
-                                            fontWeight: FontWeight.w400
-                                        ),
-                                      ),
-                                      AutoSizeText(
-                                        "Assignment: ${index + 1}",
-                                        style: GoogleFonts.tiltNeon(
-                                            color: Colors.black,
-                                            fontSize: size.height*0.024,
-                                            fontWeight: FontWeight.w400
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                ExpansionTile(
-                                  iconColor: Colors.black,
-                                  backgroundColor: const Color.fromRGBO(60, 99, 100, 1),
-                                  collapsedBackgroundColor: const Color.fromRGBO(60, 99, 100, 1),
-                                  title: AutoSizeText(
-                                     "Assignment: ${index + 1} (${(int.parse(snapshot.data!["Assignment-${index + 1}"]["Size"].toString())/1048576).toStringAsFixed(2)}MB)",
-                                     style: GoogleFonts.tiltNeon(
-                                         color: Colors.black,
-                                         fontSize: size.height*0.019,
-                                         fontWeight: FontWeight.w500
-                                     ),
-                                   ),
-                                  subtitle: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-
-                                      AutoSizeText(
-                                        "Deadline: ${snapshot
-                                            .data!["Assignment-${index +
-                                            1}"]["Last Date"]}",
-                                        style: GoogleFonts.tiltNeon(
-                                            color: Colors.black87,
-                                            fontSize: size.width*0.038,
-                                            fontWeight: FontWeight.w400
-                                        ),
-                                      ),
-                                      AutoSizeText(
-                                        "Assign: ${(snapshot
-                                            .data!["Assignment-${index +
-                                            1}"]["Assign-Date"].toDate()).toString().split(" ")[0]}",
-                                        style: GoogleFonts.tiltNeon(
-                                            color: Colors.black87,
-                                            fontSize: size.width*0.038,
-                                            fontWeight: FontWeight.w400
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                Column(
                                   children: [
-                                    const Divider(
-                                      color: Colors.black26,
-                                      height: 1.5,
-                                      endIndent: 5,
-                                      indent: 5,
-                                      thickness: 1.5,
+                                    Container(
+                                      height: size.height*0.066,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(
+                                            height: size.height*0.01,
+                                          ),
+                                          AutoSizeText(
+                                            subject_filter,
+                                            style: GoogleFonts.tiltNeon(
+                                                color: Colors.black,
+                                                fontSize: size.height*0.015,
+                                                fontWeight: FontWeight.w400
+                                            ),
+                                          ),
+                                          AutoSizeText(
+                                            "Assignment: ${index + 1}",
+                                            style: GoogleFonts.tiltNeon(
+                                                color: Colors.black,
+                                                fontSize: size.height*0.015,
+                                                fontWeight: FontWeight.w400
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                    SubmitButton(index: index,snapshot: snapshot,count: snapshot.data!.data()?["Assignment-${index+1}"]["Submitted-by"]),
-                                    const Divider(
-                                      color: Colors.black26,
-                                      height: 1.5,
-                                      endIndent: 5,
-                                      indent: 5,
-                                      thickness: 1.5,
-                                    ),
-                                    ListTile(
+                                    SizedBox(height: size.height*0.01,),
+                                    ExpansionTile(
+
+                                      iconColor: Colors.black,
+                                      backgroundColor: const Color.fromRGBO(60, 99, 100, 1),
+                                      collapsedBackgroundColor: const Color.fromRGBO(60, 99, 100, 1),
+                                      onExpansionChanged: (value) {
+                                        setState(() {
+                                          isExpanded=!isExpanded;
+                                        });
+                                      },
+
                                       title: AutoSizeText(
-                                        "Leaderboard",
+                                        "Assignment: ${index + 1} (${(int.parse(snapshot.data!["Assignment-${index + 1}"]["Size"].toString())/1048576).toStringAsFixed(2)}MB)",
                                         style: GoogleFonts.tiltNeon(
                                             color: Colors.black,
-                                            fontSize: size.width*0.045,
-                                            fontWeight: FontWeight.w400
+                                            fontSize: size.height*0.01,
+                                            fontWeight: FontWeight.w500
                                         ),
                                       ),
-                                      leading: SizedBox(
-                                        width: size.width*0.08,
-                                        child: Image.asset("assets/images/leaderboard.png"),
+                                      subtitle: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+
+                                          AutoSizeText(
+                                            "Deadline: ${snapshot
+                                                .data!["Assignment-${index +
+                                                1}"]["Last Date"]}",
+                                            style: GoogleFonts.tiltNeon(
+                                                color: Colors.black87,
+                                                fontSize: size.width*0.01,
+                                                fontWeight: FontWeight.w400
+                                            ),
+                                          ),
+                                          AutoSizeText(
+                                            "Assign: ${(snapshot
+                                                .data!["Assignment-${index +
+                                                1}"]["Assign-Date"].toDate()).toString().split(" ")[0]}",
+                                            style: GoogleFonts.tiltNeon(
+                                                color: Colors.black87,
+                                                fontSize: size.width*0.01,
+                                                fontWeight: FontWeight.w400
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      onTap: (){
-                                        Navigator.push(context, PageTransition(
-                                            child: IndividualAssignmentLeaderboard(index: index),
-                                            type: PageTransitionType.bottomToTopJoined,
-                                          childCurrent: AssignmentsUpload()
+                                      children: [
+                                        const Divider(
+                                          color: Colors.black26,
+                                          height: 1.5,
+                                          endIndent: 5,
+                                          indent: 5,
+                                          thickness: 1.5,
                                         ),
-                                        );
-                                      },
+
+                                        SubmitButton(index: index,snapshot: snapshot,count: snapshot.data!.data()?["Assignment-${index+1}"]["Submitted-by"]),
+                                        const Divider(
+                                          color: Colors.black26,
+                                          height: 1.5,
+                                          endIndent: 5,
+                                          indent: 5,
+                                          thickness: 1.5,
+                                        ),
+                                        ListTile(
+                                          title: AutoSizeText(
+                                            "Leaderboard",
+                                            style: GoogleFonts.tiltNeon(
+                                                color: Colors.black,
+                                                fontSize: size.width*0.01,
+                                                fontWeight: FontWeight.w400
+                                            ),
+                                          ),
+                                          leading: SizedBox(
+                                            width: size.width*0.02,
+                                            child: Image.asset("assets/images/leaderboard.png"),
+                                          ),
+                                          onTap: (){
+                                            Navigator.push(context, PageTransition(
+                                                child: IndividualAssignmentLeaderboard(index: index),
+                                                type: PageTransitionType.bottomToTopJoined,
+                                                childCurrent: AssignmentsUpload()
+                                            ),
+                                            );
+                                          },
+                                        )
+                                      ],
                                     )
                                   ],
+                                ),
+
+                                Positioned(
+                                  top: 8,
+                                  right: size.width*0.01,
+                                  child: DownloadButton(
+                                      downloadUrl: snapshot.data!.data()?["Assignment-${index + 1}"]["Assignment"],
+                                      pdfName: "Assignment-${index + 1}.${snapshot.data?.data()?["Assignment-${index + 1}"]["Document-type"]}",
+                                      path: path
+                                  ),
                                 )
+
+
                               ],
                             ),
-
-                            Positioned(
-                              top: 8,
-                              right: size.width*0.04,
-                              child: DownloadButton(
-                                  downloadUrl: snapshot.data!.data()?["Assignment-${index + 1}"]["Assignment"],
-                                  pdfName: "Assignment-${index + 1}.${snapshot.data?.data()?["Assignment-${index + 1}"]["Document-type"]}",
-                                  path: path
-                              ),
-                            )
-
-
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                )
+                          ),
+                        );
+                      },)
                     :
                         const SizedBox()
                     :

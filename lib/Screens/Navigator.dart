@@ -83,7 +83,8 @@ class _NeviState extends State<Nevi>  {
 
 
       appBar: AppBar(
-          elevation: 10,
+          elevation: 0,
+
 
           actions: [
             StreamBuilder(
@@ -191,7 +192,7 @@ class _NeviState extends State<Nevi>  {
             )
           ],
           iconTheme: const IconThemeData(color: Colors.black),
-          backgroundColor: Colors.black38,
+          backgroundColor: Color.fromRGBO(43, 43, 43, 1),
           title: SizedBox(
                 width: size.width*0.56,
             child: Stack(

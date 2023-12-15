@@ -102,13 +102,13 @@ class _OverAllLeaderBoardState extends State<OverAllLeaderBoard> {
                   child: ExpansionTile(
                     title: AutoSizeText("${result[index]["Name"]}",style: GoogleFonts.tiltNeon(
                       color: Colors.black,
-                      fontSize: size.width*0.015,
+                      fontSize: size.width*0.01,
 
                     ),
                     ),
                     subtitle: AutoSizeText("${result[index]["Rollnumber"]}",style: GoogleFonts.tiltNeon(
                       color: Colors.black45,
-                      fontSize: size.width*0.015,
+                      fontSize: size.width*0.01,
 
                     ),),
                     leading: SizedBox(
@@ -117,7 +117,7 @@ class _OverAllLeaderBoardState extends State<OverAllLeaderBoard> {
                         children: [
                           AutoSizeText("${index+1}",style: GoogleFonts.tiltNeon(
                             color: Colors.black,
-                            fontSize: size.width*0.015,
+                            fontSize: size.width*0.01,
 
                           ),),
                           SizedBox(
@@ -158,7 +158,7 @@ class _OverAllLeaderBoardState extends State<OverAllLeaderBoard> {
                                 :
                             Colors.green[900]
                             ,
-                            fontSize: size.width*0.015,
+                            fontSize: size.width*0.01,
 
                           ),
 
@@ -170,7 +170,7 @@ class _OverAllLeaderBoardState extends State<OverAllLeaderBoard> {
                       ListTile(
                         title: AutoSizeText("Attendance",style: GoogleFonts.tiltNeon(
                           color: Colors.black54,
-                          fontSize: size.width*0.015,
+                          fontSize: size.width*0.01,
 
                         ),),
                         trailing: AutoSizeText("${result[index]["AttendanceScore"].toStringAsFixed(2)}%",style: GoogleFonts.tiltNeon(
@@ -184,7 +184,7 @@ class _OverAllLeaderBoardState extends State<OverAllLeaderBoard> {
                               :
                           Colors.green[900]
                           ,
-                          fontSize: size.width*0.015,
+                          fontSize: size.width*0.01,
 
                         ),),
                       ),
@@ -192,7 +192,7 @@ class _OverAllLeaderBoardState extends State<OverAllLeaderBoard> {
 
                         title: AutoSizeText("Assignment",style: GoogleFonts.tiltNeon(
                           color: Colors.black54,
-                          fontSize: size.width*0.015,
+                          fontSize: size.width*0.01,
 
                         ),),
                         trailing: AutoSizeText("${result[index]["AssignmentScore"].toStringAsFixed(2)}%",style: GoogleFonts.tiltNeon(
@@ -206,7 +206,7 @@ class _OverAllLeaderBoardState extends State<OverAllLeaderBoard> {
                               :
                           Colors.green[900]
                           ,
-                          fontSize: size.width*0.015,
+                          fontSize: size.width*0.01,
 
                         ),),
                       ),
@@ -214,7 +214,7 @@ class _OverAllLeaderBoardState extends State<OverAllLeaderBoard> {
 
                         title: AutoSizeText("Sessional Marks",style: GoogleFonts.tiltNeon(
                           color: Colors.black54,
-                          fontSize: size.width*0.015,
+                          fontSize: size.width*0.01,
 
                         ),),
                         trailing: AutoSizeText("${result[index]["MarksScore"].toStringAsFixed(2)}%",style: GoogleFonts.tiltNeon(
@@ -228,7 +228,7 @@ class _OverAllLeaderBoardState extends State<OverAllLeaderBoard> {
                               :
                           Colors.green[900]
                           ,
-                          fontSize: size.width*0.015,
+                          fontSize: size.width*0.01,
 
                         ),),
                         children: [
@@ -243,7 +243,7 @@ class _OverAllLeaderBoardState extends State<OverAllLeaderBoard> {
                                       "Sessional ${index1+1} marks",
                                       style: GoogleFonts.tiltNeon(
                                         color: Colors.black54,
-                                        fontSize: size.width*0.015,
+                                        fontSize: size.width*0.01,
                                       ),
                                     ),
                                     trailing: AutoSizeText("${result[index]["Sessional_record"][index1]["obtainedMarks"]}/${result[index]["Sessional_record"][index1]["totalMarks"]}",style: GoogleFonts.tiltNeon(
@@ -257,7 +257,7 @@ class _OverAllLeaderBoardState extends State<OverAllLeaderBoard> {
                                           :
                                       Colors.green[900]
                                       ,
-                                      fontSize: size.width*0.015,
+                                      fontSize: size.width*0.01,
 
                                     ),),
                                   );

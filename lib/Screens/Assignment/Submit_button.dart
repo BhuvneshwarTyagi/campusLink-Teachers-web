@@ -50,18 +50,18 @@ class SubmitButton extends StatelessWidget {
       },
       title: AutoSizeText("Submission",
         style:GoogleFonts.tiltNeon(
-            fontSize: size.width * 0.045,
+            fontSize: size.width * 0.01,
             fontWeight: FontWeight.w500,
             color: Colors.black
         ),
       ),
       leading: SizedBox(
-        width: size.width*0.08,
+        width: size.width*0.02,
         child: Image.asset("assets/images/response.png"),
       ),
       trailing: AutoSizeText(count == null ? "0" :"${count.length}",
       style:GoogleFonts.tiltNeon(
-          fontSize: size.width * 0.045,
+          fontSize: size.width * 0.01,
           fontWeight: FontWeight.w500,
           color: Colors.black
       ),

@@ -9,18 +9,18 @@ class TopThree extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size=MediaQuery.of(context).size;
-    return Container(
+    return SizedBox(
 
       height: size.height*0.55,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
-            width: size.width * 0.1333,
+              width: size.width * 0.1333,
             height: size.height*0.45,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
               SizedBox(
 
@@ -28,7 +28,7 @@ class TopThree extends StatelessWidget {
                 child: Stack(children: [
                   Positioned(
                     bottom: 0,
-                    left: size.height*0.001,
+                    left: size.height*0.035,
                     child: StreamBuilder(
                         stream: FirebaseFirestore.instance.collection("Students").doc(data[1]["Email"]).snapshots(),
                         builder: (context, snapshot) {
@@ -61,8 +61,8 @@ class TopThree extends StatelessWidget {
                   ),
                   Positioned(
 
-                    left: size.width*0.025,
-                    bottom: size.width*0.087,
+                    left: size.width*0.037,
+                    bottom: size.width*0.086,
                     child: Transform.rotate(
 
 
@@ -77,9 +77,7 @@ class TopThree extends StatelessWidget {
               SizedBox(
                 height: size.height*0.01,
               ),
-              SizedBox(
-                width: size.width * 0.1,
-                child: AutoSizeText(
+                AutoSizeText(
                   data[1]["Name"]
                   ,
                   style: GoogleFonts.tiltNeon(
@@ -89,17 +87,14 @@ class TopThree extends StatelessWidget {
 
                   textAlign: TextAlign.center,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 50.0),
-                child: AutoSizeText(
+                AutoSizeText(
                   "${(data[1]["Submitted"]*100).toStringAsFixed(2)} %",
                   style: const TextStyle(
                     color: Color.fromARGB(255, 10, 52, 84),
                     fontWeight: FontWeight.w500,
                   ),
-                ),
-              ),
+                  textAlign: TextAlign.center,
+                )
             ],
             ),
           ),
@@ -159,16 +154,14 @@ class TopThree extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
-                  width: size.width * 0.1,
-                  child: AutoSizeText(
-                    data[0]["Name"],
-                    style: GoogleFonts.tiltNeon(
-                      color: Colors.black,
-                      fontSize: size.width * 0.015,
-                    ),
-                    maxLines: 2,
+                AutoSizeText(
+                  data[0]["Name"],
+                  style: GoogleFonts.tiltNeon(
+                    color: Colors.black,
+                    fontSize: size.width * 0.015,
                   ),
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
                 ),
                 AutoSizeText( "${(data[0]["Submitted"]*100).toStringAsFixed(2)} %",
                   style: const TextStyle(
@@ -181,20 +174,21 @@ class TopThree extends StatelessWidget {
           ),
           SizedBox(
 
+
             width: size.width * 0.1333,
             height: size.height*0.45,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
 
-                  height: size.height*0.3,
+                  height: size.height*0.28,
                   child: Stack(
                     children: [
                       Positioned(
                         bottom: 0,
-                        left: size.height*0.001,
+                        left: size.height*0.026,
                         child: StreamBuilder(
                           stream: FirebaseFirestore.instance.collection("Students").doc(data[2]["Email"]).snapshots(),
                           builder: (context, snapshot) {
@@ -226,7 +220,7 @@ class TopThree extends StatelessWidget {
                       ),
 
                       Positioned(
-                        left: size.width*0.03,
+                        left: size.width*0.037,
                         bottom: size.width*0.085,
                         child: Transform.rotate(
                           
@@ -241,29 +235,23 @@ class TopThree extends StatelessWidget {
                 SizedBox(
                   height: size.height*0.01,
                 ),
-                SizedBox(
-                  width: size.width * 0.1,
-                  child: AutoSizeText(
-                    data[2]["Name"]
-                    ,
-                    style: GoogleFonts.tiltNeon(
-                      color: Colors.black,
-                      fontSize: size.width * 0.015,
-                    ),
-                    maxLines: 2,
-                    textAlign: TextAlign.center,
+                AutoSizeText(
+                  data[2]["Name"]
+                  ,
+                  style: GoogleFonts.tiltNeon(
+                    color: Colors.black,
+                    fontSize: size.width * 0.015,
                   ),
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 50.0),
-                  child: AutoSizeText(
-    "${(data[2]["Submitted"]*100).toStringAsFixed(2)} %",
-                      style: const TextStyle(
-                          color: Color.fromARGB(255, 10, 52, 84),
-                          fontWeight: FontWeight.w500,
-                      ),
+                AutoSizeText(
+                  "${(data[2]["Submitted"]*100).toStringAsFixed(2)} %",
+                  style: const TextStyle(
+                    color: Color.fromARGB(255, 10, 52, 84),
+                    fontWeight: FontWeight.w500,
                   ),
-                ),
+                )
               ],
             ),
           ),

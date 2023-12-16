@@ -201,8 +201,10 @@ class _NeviState extends State<Nevi>  {
                     :
                 showDialog(
                   context: context,
-                  builder: (ctx) =>
-                      Filters(),
+                  builder: (context) {
+
+                  return  Filters();
+                  }
                 );
                 // Navigator.push(
                 //   context,
@@ -574,7 +576,7 @@ class _NeviState extends State<Nevi>  {
         centerTitle: true,
       ),
       body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
            SizedBox(

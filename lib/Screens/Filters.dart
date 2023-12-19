@@ -51,13 +51,12 @@ class _FiltersState extends State<Filters> {
     Color optioncolor=Colors.black;
     Color dotcolor=Colors.black;
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Center(
+    return  Center(
         child: Container(
           height: size.height*0.8,
           width: size.width*0.6,
           decoration: BoxDecoration(
+            color: Colors.transparent,
             borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
             boxShadow: [
               BoxShadow(
@@ -131,13 +130,17 @@ class _FiltersState extends State<Filters> {
                             .doc("Teachings")
                             .snapshots(),
                         builder: (context, snapshot) {
-                          university_list = snapshot.data?.data()?["University"];
+                          if(snapshot.hasData && snapshot.data!.exists){
+                            university_list = snapshot.data?.data()?["University"] ?? [];
+                          }
 
                           if (!snapshot.hasData || university_list!.isEmpty) {
-                            return Center(
+                            return snapshot.data!.data()?["Subject"] != null ? Center(
                               child: CircularProgressIndicator(
                                 color: dotcolor,
                               ),
+                            ) : const Center(
+                              child: AutoSizeText("No teaching details found"),
                             );
                           } else {
                             return SizedBox(
@@ -704,8 +707,8 @@ class _FiltersState extends State<Filters> {
             ),
           ),
         ),
-      ),
-    );
+      );
+
   }
 
 }

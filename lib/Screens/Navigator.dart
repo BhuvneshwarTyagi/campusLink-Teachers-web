@@ -74,6 +74,7 @@ class _NeviState extends State<Nevi>  {
       });
     });
   }
+  Color OnClick=Colors.transparent;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -85,7 +86,7 @@ class _NeviState extends State<Nevi>  {
       appBar: AppBar(
           elevation: 0,
 
-
+        toolbarHeight:  size.height * 0.07,
           actions: [
             StreamBuilder(
 
@@ -203,7 +204,7 @@ class _NeviState extends State<Nevi>  {
                   context: context,
                   builder: (context) {
 
-                  return  Filters();
+                  return  const Filters();
                   }
                 );
                 // Navigator.push(
@@ -220,46 +221,57 @@ class _NeviState extends State<Nevi>  {
             )
           ],
           iconTheme: const IconThemeData(color: Colors.black),
-          backgroundColor: Color.fromRGBO(43, 43, 43, 1),
+          backgroundColor: const Color.fromRGBO(43, 43, 43, 1),
           title: SizedBox(
-                width: size.width*0.56,
-            child: Stack(
+
+            child: Row(
+
               children: [
-                Container(
-                  height: size.height * 0.055,
-                  color: Colors.transparent,
+                SizedBox(
+                  width: size.width*0.246,),
+                SizedBox(
+                      width: size.width*0.472,
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       InkWell(
-                        splashColor: Colors.transparent,
+                        splashColor:Colors.transparent,
                         highlightColor: Colors.transparent,
+
+
                         onTap: () {
+
                           setState(() {
                             index = 0;
                             slider= size.width*0.08;
+
                           });
                         },
-                        child: Row(
-                          children: [
-                            Container(
+                        child: Container(
+                          color: index==0 ? Colors.white70:Colors.transparent,
+                          height: size.height*0.07,
+                          width: size.width*0.094,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(
 
-                              width: size.width*0.025,
-                              height: size.height*0.045,
-                              decoration: const BoxDecoration(
-                                color: Colors.transparent,
-                                image: DecorationImage(
-                                  image: AssetImage("assets/images/assignment.png"),
+                                width: size.width*0.025,
+                                height: size.height*0.045,
 
-                                  fit: BoxFit.contain,
+                                decoration: const BoxDecoration(
+                                  color: Colors.transparent,
+                                  image: DecorationImage(
+                                    image: AssetImage("assets/images/assignment.png"),
+
+                                    fit: BoxFit.contain,
+                                  ),
+
+
                                 ),
-
-
                               ),
-                            ),
-                            AutoSizeText("Assignment",style: GoogleFonts.tiltNeon(fontSize: size.height*0.025,fontWeight: FontWeight.w600),),
-                          ],
+                              AutoSizeText("Assignment",style: GoogleFonts.tiltNeon(fontSize: size.height*0.025,fontWeight: FontWeight.w600,color: Colors.black),),
+                            ],
+                          ),
                         ),
                       ),
 
@@ -272,21 +284,27 @@ class _NeviState extends State<Nevi>  {
                             slider= size.width*0.25;
                           });
                         },
-                        child: Row(
-                          children: [
-                            Container(
-                              width: size.width*0.02,
-                              height: size.height*0.04,
-                              decoration: const BoxDecoration(
-                                color: Colors.transparent,
-                                image: DecorationImage(
-                                  image: AssetImage("assets/images/notes_icon.png"),
-                                  fit: BoxFit.contain,
+                        child: Container(
+                          color: index==1 ? Colors.white70:Colors.transparent,
+                          height: size.height*0.07,
+                          width: size.width*0.094,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(
+                                width: size.width*0.02,
+                                height: size.height*0.04,
+                                decoration: const BoxDecoration(
+                                  color: Colors.transparent,
+                                  image: DecorationImage(
+                                    image: AssetImage("assets/images/notes_icon.png"),
+                                    fit: BoxFit.contain,
+                                  ),
                                 ),
                               ),
-                            ),
-                            AutoSizeText("Notes",style: GoogleFonts.tiltNeon(fontSize: size.height*0.025,fontWeight: FontWeight.w600),),
-                          ],
+                              AutoSizeText("Notes",style: GoogleFonts.tiltNeon(fontSize: size.height*0.025,fontWeight: FontWeight.w600,color: Colors.black),),
+                            ],
+                          ),
                         ),
                       ),
 
@@ -452,22 +470,28 @@ class _NeviState extends State<Nevi>  {
                             },
                           );
                         },
-                        child: Row(
-                          children: [
-                            Container(
-                              width: size.width*0.02,
-                              height: size.height*0.03,
-                              decoration: const BoxDecoration(
-                                color: Colors.transparent,
-                                image: DecorationImage(
-                                  image:
-                                  AssetImage("assets/images/attendance_icon.png"),
-                                  fit: BoxFit.contain,
+                        child: Container(
+                          color: index==2 ? Colors.white70:Colors.transparent,
+                          height: size.height*0.07,
+                          width: size.width*0.094,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(
+                                width: size.width*0.02,
+                                height: size.height*0.03,
+                                decoration: const BoxDecoration(
+                                  color: Colors.transparent,
+                                  image: DecorationImage(
+                                    image:
+                                    AssetImage("assets/images/attendance_icon.png"),
+                                    fit: BoxFit.contain,
+                                  ),
                                 ),
                               ),
-                            ),
-                            AutoSizeText("Attendence",style: GoogleFonts.tiltNeon(fontSize: size.height*0.025,fontWeight: FontWeight.w600),),
-                          ],
+                              AutoSizeText("Attendence",style: GoogleFonts.tiltNeon(fontSize: size.height*0.025,fontWeight: FontWeight.w600,color: Colors.black),),
+                            ],
+                          ),
                         ),
                       ),
 
@@ -483,21 +507,27 @@ class _NeviState extends State<Nevi>  {
 
 
                         },
-                        child: Row(
-                          children: [
-                            Container(
-                              width: size.width*0.02,
-                              height: size.height*0.03,
-                              decoration: const BoxDecoration(
-                                color: Colors.transparent,
-                                image: DecorationImage(
-                                  image: AssetImage("assets/images/mark_icon.png"),
-                                  fit: BoxFit.contain,
+                        child: Container(
+                          color: index==4 ? Colors.white70:Colors.transparent,
+                          height: size.height*0.07,
+                          width: size.width*0.094,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(
+                                width: size.width*0.02,
+                                height: size.height*0.03,
+                                decoration: const BoxDecoration(
+                                  color: Colors.transparent,
+                                  image: DecorationImage(
+                                    image: AssetImage("assets/images/mark_icon.png"),
+                                    fit: BoxFit.contain,
+                                  ),
                                 ),
                               ),
-                            ),
-                            AutoSizeText("Marks",style: GoogleFonts.tiltNeon(fontSize: size.height*0.025,fontWeight: FontWeight.w600),),
-                          ],
+                              AutoSizeText("Marks",style: GoogleFonts.tiltNeon(fontSize: size.height*0.025,color:Colors.black,fontWeight: FontWeight.w600),),
+                            ],
+                          ),
                         ),
                       ),
 
@@ -510,308 +540,304 @@ class _NeviState extends State<Nevi>  {
                             slider= size.width*0.73;
                           });
                         },
-                        child: Row(
-                          children: [
-                            Container(
-                              width: size.width*0.02,
-                              height: size.height*0.03,
-                              decoration: const BoxDecoration(
-                                color: Colors.transparent,
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                      "assets/images/performance_icon.png"),
-                                  fit: BoxFit.contain,
+                        child: Container(
+                          color: index==3 ? Colors.white70:Colors.transparent,
+                          height: size.height*0.07,
+                          width: size.width*0.094,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(
+                                width: size.width*0.02,
+                                height: size.height*0.03,
+                                decoration: const BoxDecoration(
+                                  color: Colors.transparent,
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        "assets/images/performance_icon.png"),
+                                    fit: BoxFit.contain,
+                                  ),
                                 ),
                               ),
-                            ),
-                            AutoSizeText("LeaderBoard",style: GoogleFonts.tiltNeon(fontSize: size.height*0.025,fontWeight: FontWeight.w600),),
-                          ],
+                              AutoSizeText("LeaderBoard",style: GoogleFonts.tiltNeon(fontSize: size.height*0.025,color:Colors.black,fontWeight: FontWeight.w600),),
+                            ],
+                          ),
                         ),
                       ),
 
-                    ],
-                  ),
-                ),
-                AnimatedPositioned(
-                  height: size.height*0.055,
-                  left: slider,
-
-                  duration: const Duration(milliseconds: 300),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        width: size.width*0.1,
-                        height: size.height*0.0055,
-                        decoration: const BoxDecoration(
-
-                            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),bottomRight: Radius.circular(10)),
-                            gradient: LinearGradient(
-                                colors: [
-                                  Color.fromRGBO(89, 193, 115, 1),
-                                  Color.fromRGBO(161, 127, 224, 1),
-                                  // Color.fromRGBO(93, 38, 193, 1),
-                                ])
-                        ),
-                      ),
-                      Container(
-                        width: size.width*0.1,
-                        height: size.height*0.0055,
-                        decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                                colors: [
-                                  Color.fromRGBO(89, 193, 115, 1),
-                                  Color.fromRGBO(161, 127, 224, 1),
-                                  // Color.fromRGBO(93, 38, 193, 1),
-                                ]),
-                            borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(10))
-                        ),
-                      ),
                     ],
                   ),
                 ),
               ],
             ),
           ),
-        centerTitle: true,
       ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           SizedBox(
+           Container(
+             width: size.width*0.26,
+             color: Colors.grey[300],
+             child: Row(
+               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+               children: [
+                 SizedBox(
         height: size.height*0.8,
         width: size.width*0.24,
         child: ListView(
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: size.height*0.02,),
-                Stack(
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(height: size.height*0.02,),
+                      Stack(
 
-                  children: [
+                        children: [
 
-                    CircleAvatar(
-                      radius: size.height*0.06,
+                          CircleAvatar(
+                            radius: size.height*0.06,
 
-                      backgroundImage:usermodel["Profile_URL"]!=null?
+                            backgroundImage:usermodel["Profile_URL"]!=null?
 
-                      NetworkImage(usermodel["Profile_URL"])
-                          :
-                      null,
-                      // backgroundColor: Colors.teal.shade300,
-                      child: usermodel["Profile_URL"]==null?
-                      AutoSizeText(
-                        usermodel["Name"].toString().substring(0,1),
-                        style: GoogleFonts.exo(
-                            fontSize: size.height * 0.05,
-                            fontWeight: FontWeight.w600),
-                      )
-                          :
-                      null,
-                    ),
-                    Positioned(
-                      bottom: -5,
-                      left: 35,
-                      child: IconButton(
-                        icon: Icon(Icons.camera_enhance,size:size.height*0.03 ,color: Colors.black,),
-                        onPressed: (){} ,
+                            NetworkImage(usermodel["Profile_URL"])
+                                :
+                            null,
+                            // backgroundColor: Colors.teal.shade300,
+                            child: usermodel["Profile_URL"]==null?
+                            AutoSizeText(
+                              usermodel["Name"].toString().substring(0,1),
+                              style: GoogleFonts.exo(
+                                  fontSize: size.height * 0.05,
+                                  fontWeight: FontWeight.w600),
+                            )
+                                :
+                            null,
+                          ),
+                          Positioned(
+                            bottom: -5,
+                            left: 35,
+                            child: IconButton(
+                              icon: Icon(Icons.camera_enhance,size:size.height*0.03 ,color: Colors.black,),
+                              onPressed: (){} ,
+                            ),
+                          )
+                        ],
                       ),
-                    )
-                  ],
-                ),
-                SizedBox(height: size.height*0.02,),
-                AutoSizeText(
-                  usermodel["Name"],
-                  style: GoogleFonts.exo(
-                      color: Colors.black54,
-                      fontSize: size.height * 0.022,
-                      fontWeight: FontWeight.w600),
-                ),
-                SizedBox(height: size.height*0.01,),
-                AutoSizeText(
-                  usermodel["Email"],
-                  style: GoogleFonts.exo(
-                      color: Colors.black54,
-                      fontSize: size.height * 0.02,
-                      fontWeight: FontWeight.w600),
-                ),
-                Divider(color: Colors.black54,height: size.height*0.01,)
-              ],
-            ),
-            // UserAccountsDrawerHeader(
-            //     decoration: const BoxDecoration(
-            //     color: Colors.transparent
-            //     ),
-            //     accountName: AutoSizeText(
-            //       usermodel["Name"],
-            //       style: GoogleFonts.exo(
-            //         color: Colors.black54,
-            //           fontSize: size.height * 0.022,
-            //           fontWeight: FontWeight.w600),
-            //     ),
-            //     accountEmail: AutoSizeText(
-            //       usermodel["Email"],
-            //       style: GoogleFonts.exo(
-            //         color: Colors.black54,
-            //           fontSize: size.height * 0.02,
-            //           fontWeight: FontWeight.w600),
-            //     ),
-            //     currentAccountPicture:Stack(
-            //
-            //       children: [
-            //
-            //         CircleAvatar(
-            //           radius: size.height*0.2,
-            //
-            //           backgroundImage:usermodel["Profile_URL"]!=null?
-            //
-            //           NetworkImage(usermodel["Profile_URL"])
-            //               :
-            //           null,
-            //           // backgroundColor: Colors.teal.shade300,
-            //           child: usermodel["Profile_URL"]==null?
-            //           AutoSizeText(
-            //             usermodel["Name"].toString().substring(0,1),
-            //             style: GoogleFonts.exo(
-            //                 fontSize: size.height * 0.05,
-            //                 fontWeight: FontWeight.w600),
-            //           )
-            //               :
-            //           null,
-            //         ),
-            //         Positioned(
-            //           bottom: -5,
-            //           left: 35,
-            //           child: IconButton(
-            //             icon: Icon(Icons.camera_enhance,size:size.height*0.03 ,color: Colors.black,),
-            //             onPressed: (){} ,
-            //           ),
-            //         )
-            //       ],
-            //     )
-            // ),
-            ListTile(
-              leading: const Icon(Icons.home,color: Colors.black,),
-              title: const Text("Home"),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.home,color: Colors.black,),
-              title: const Text("Notification"),
-              onTap: () {
-                NotificationServices.display(
-                    const RemoteMessage(
-                      data:{
-                        'title': "Test",
-                        'body': "Testing",
-                        'route': ""
-                      },
-                    ),
-                    '404'
-                );
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.add,color: Colors.black,),
-              title: const Text('Add Subject'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  PageTransition(
-                    child: const basicDetails(),
-                    type: PageTransitionType.rightToLeftJoined,
-                    duration: const Duration(milliseconds: 350),
-                    childCurrent: const Nevi(),
+                      SizedBox(height: size.height*0.02,),
+                      AutoSizeText(
+                        usermodel["Name"],
+                        style: GoogleFonts.exo(
+                            color: Colors.black54,
+                            fontSize: size.height * 0.022,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      SizedBox(height: size.height*0.01,),
+                      AutoSizeText(
+                        usermodel["Email"],
+                        style: GoogleFonts.exo(
+                            color: Colors.black54,
+                            fontSize: size.height * 0.02,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      Divider(color: Colors.black54,height: size.height*0.01,)
+                    ],
                   ),
-                );
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.download,color: Colors.black,),
-              title: const Text('Download Attendance'),
-              onTap: () {
-                Navigator.push(context, PageTransition(
-                  child: const Download_attendance(),
-                  type: PageTransitionType.bottomToTopJoined,
-                  duration: const Duration(milliseconds: 400),
-                  alignment: Alignment.bottomCenter,
-                  childCurrent: const Nevi(),
-                ),);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.feedback_outlined,color: Colors.black,),
-              title: const Text('Check Feedbacks'),
-              onTap: () {
-                Navigator.push(context, PageTransition(
-                  child: const FeedBack(),
-                  type: PageTransitionType.bottomToTopJoined,
-                  duration: const Duration(milliseconds: 400),
-                  alignment: Alignment.bottomCenter,
-                  childCurrent: const Nevi(),
-                ),);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.settings,color: Colors.black),
-              title: const Text("Settings"),
-              onTap: () async {
+                  // UserAccountsDrawerHeader(
+                  //     decoration: const BoxDecoration(
+                  //     color: Colors.transparent
+                  //     ),
+                  //     accountName: AutoSizeText(
+                  //       usermodel["Name"],
+                  //       style: GoogleFonts.exo(
+                  //         color: Colors.black54,
+                  //           fontSize: size.height * 0.022,
+                  //           fontWeight: FontWeight.w600),
+                  //     ),
+                  //     accountEmail: AutoSizeText(
+                  //       usermodel["Email"],
+                  //       style: GoogleFonts.exo(
+                  //         color: Colors.black54,
+                  //           fontSize: size.height * 0.02,
+                  //           fontWeight: FontWeight.w600),
+                  //     ),
+                  //     currentAccountPicture:Stack(
+                  //
+                  //       children: [
+                  //
+                  //         CircleAvatar(
+                  //           radius: size.height*0.2,
+                  //
+                  //           backgroundImage:usermodel["Profile_URL"]!=null?
+                  //
+                  //           NetworkImage(usermodel["Profile_URL"])
+                  //               :
+                  //           null,
+                  //           // backgroundColor: Colors.teal.shade300,
+                  //           child: usermodel["Profile_URL"]==null?
+                  //           AutoSizeText(
+                  //             usermodel["Name"].toString().substring(0,1),
+                  //             style: GoogleFonts.exo(
+                  //                 fontSize: size.height * 0.05,
+                  //                 fontWeight: FontWeight.w600),
+                  //           )
+                  //               :
+                  //           null,
+                  //         ),
+                  //         Positioned(
+                  //           bottom: -5,
+                  //           left: 35,
+                  //           child: IconButton(
+                  //             icon: Icon(Icons.camera_enhance,size:size.height*0.03 ,color: Colors.black,),
+                  //             onPressed: (){} ,
+                  //           ),
+                  //         )
+                  //       ],
+                  //     )
+                  // ),
+                  ListTile(
+                    leading: const Icon(Icons.home,color: Colors.black,),
+                    title: const Text("Home"),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.home,color: Colors.black,),
+                    title: const Text("Notification"),
+                    onTap: () {
+                      NotificationServices.display(
+                          const RemoteMessage(
+                            data:{
+                              'title': "Test",
+                              'body': "Testing",
+                              'route': ""
+                            },
+                          ),
+                          '404'
+                      );
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.add,color: Colors.black,),
+                    title: const Text('Add Subject'),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          child: const basicDetails(),
+                          type: PageTransitionType.rightToLeftJoined,
+                          duration: const Duration(milliseconds: 350),
+                          childCurrent: const Nevi(),
+                        ),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.download,color: Colors.black,),
+                    title: const Text('Download Attendance'),
+                    onTap: () {
+                      Navigator.push(context, PageTransition(
+                        child: const Download_attendance(),
+                        type: PageTransitionType.bottomToTopJoined,
+                        duration: const Duration(milliseconds: 400),
+                        alignment: Alignment.bottomCenter,
+                        childCurrent: const Nevi(),
+                      ),);
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.feedback_outlined,color: Colors.black,),
+                    title: const Text('Check Feedbacks'),
+                    onTap: () {
+                      Navigator.push(context, PageTransition(
+                        child: const FeedBack(),
+                        type: PageTransitionType.bottomToTopJoined,
+                        duration: const Duration(milliseconds: 400),
+                        alignment: Alignment.bottomCenter,
+                        childCurrent: const Nevi(),
+                      ),);
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.settings,color: Colors.black),
+                    title: const Text("Settings"),
+                    onTap: () async {
 
-                final dio = Dio();
-                Directory appDocDir = await getApplicationDocumentsDirectory();
-                String imagesAppDirectory = appDocDir.path;
-                final file = await File('$imagesAppDirectory/image.jpg').create(recursive: true);
-                await dio.download("https://firebasestorage.googleapis.com/v0/b/campus-link-6f11f.appspot.com/o/Machine%20Learning%2F1face7.jpg?alt=media&token=a87eea7b-0fe1-4fa7-8031-d7761b374d8c", file.path).whenComplete((){
-                  uploadImage(file.path);
-                });
+                      final dio = Dio();
+                      Directory appDocDir = await getApplicationDocumentsDirectory();
+                      String imagesAppDirectory = appDocDir.path;
+                      final file = await File('$imagesAppDirectory/image.jpg').create(recursive: true);
+                      await dio.download("https://firebasestorage.googleapis.com/v0/b/campus-link-6f11f.appspot.com/o/Machine%20Learning%2F1face7.jpg?alt=media&token=a87eea7b-0fe1-4fa7-8031-d7761b374d8c", file.path).whenComplete((){
+                        uploadImage(file.path);
+                      });
 
 
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.settings,color: Colors.black),
-              title: const Text("Train"),
-              onTap: () async {
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.settings,color: Colors.black),
+                    title: const Text("Train"),
+                    onTap: () async {
 
-                final dio = Dio();
-                Directory appDocDir = await getApplicationDocumentsDirectory();
-                String imagesAppDirectory = appDocDir.path;
-                Directory dir = Directory("$imagesAppDirectory/campulink");
-                final file = File('${dir.path}/image1.jpg');
-                dio.download("https://firebasestorage.googleapis.com/v0/b/campus-link-6f11f.appspot.com/o/User_profile%2Fbhanu68tyagi%40gmail.com?alt=media&token=a6d46855-e763-4452-a0ee-4cdbdd1cc7e6", file.path);
+                      final dio = Dio();
+                      Directory appDocDir = await getApplicationDocumentsDirectory();
+                      String imagesAppDirectory = appDocDir.path;
+                      Directory dir = Directory("$imagesAppDirectory/campulink");
+                      final file = File('${dir.path}/image1.jpg');
+                      dio.download("https://firebasestorage.googleapis.com/v0/b/campus-link-6f11f.appspot.com/o/User_profile%2Fbhanu68tyagi%40gmail.com?alt=media&token=a6d46855-e763-4452-a0ee-4cdbdd1cc7e6", file.path);
 
-                await uploadImageTGitHub("BhuvneshwarTyagi", "FaceDetectionApi", file.path, "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");
+                      await uploadImageTGitHub("BhuvneshwarTyagi", "FaceDetectionApi", file.path, "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");
 
 
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.logout_outlined,color: Colors.black,),
-              title: const Text('Logout'),
-              onTap: () {
-                database().signOut();
-                Navigator.pop(context);
-              },
-            ),
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.logout_outlined,color: Colors.black,),
+                    title: const Text('Logout'),
+                    onTap: () {
+                      database().signOut();
+                      Navigator.pop(context);
+                    },
+                  ),
 
           ],
 
         ),
       ),
+                 const VerticalDivider(
+                   color: Colors.black,
+                   thickness: 2,
+
+
+                 ),
+               ],
+             ),
+           ),
+
 
           SizedBox(
           width: size.width*0.40,
           child: screens[index]),
-          SizedBox(
-              width: size.width*0.26,
-              child: const chatsystem()),
+          Container(
+            color: Colors.grey[300],
+            width: size.width*0.265,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const VerticalDivider(
+                  color: Colors.black,
+                  thickness: 2,
+
+                ),
+                SizedBox(
+                    width: size.width*0.25,
+                    child: const chatsystem()),
+              ],
+            ),
+          ),
 
 
 

@@ -23,9 +23,7 @@ class _chatsystemState extends State<chatsystem> {
   Widget build(BuildContext context) {
     Size size=MediaQuery.of(context).size;
     return Container(
-      decoration: const BoxDecoration(
 
-      ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         // appBar: AppBar(
@@ -125,7 +123,8 @@ class _chatsystemState extends State<chatsystem> {
             :
         Container(
           color: Colors.transparent,
-          height: size.height*0.9,
+          height: size.height*0.92,
+          width: size.width*0.25,
 
           child: ListView.builder(
             shrinkWrap: true,
@@ -134,7 +133,8 @@ class _chatsystemState extends State<chatsystem> {
             itemCount: usermodel["Message_channels"].length,
             itemBuilder: (context, index) {
               return SizedBox(
-                height: size.height*0.1,
+                height: size.height*0.11,
+                width: size.width*0.25,
 
                 child: StreamBuilder(
 
@@ -175,7 +175,7 @@ class _chatsystemState extends State<chatsystem> {
                       },
                       child: SizedBox(
                         height: size.height*0.11,
-                        width: size.width*0.22,
+
                         child:  Card(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -183,8 +183,7 @@ class _chatsystemState extends State<chatsystem> {
                               SizedBox(width: size.width*0.005,),
                               CircleAvatar(
                                 backgroundColor: const Color.fromRGBO(86, 149, 178, 1),
-                                maxRadius: size.width*0.015,
-                                minRadius: size.width*0.01,
+                              radius: size.width*0.015,
                                 backgroundImage: (profileUrl != "null" || profileUrl!="") ? NetworkImage(profileUrl) : null,
                                 child: (profileUrl == "null" || profileUrl == "")
                                     ?
@@ -192,25 +191,25 @@ class _chatsystemState extends State<chatsystem> {
                                   Name.substring(0,1),
                                   style: GoogleFonts.tiltNeon(
                                       color: Colors.black,
-                                      fontSize: size.height * 0.03,
+                                      fontSize: size.height * 0.035,
                                       fontWeight: FontWeight.w600),
                                 )
                                     : null,
                               ),
 
-                              SizedBox(width: size.width*0.005),
+                              SizedBox(width: size.width*0.001),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   AutoSizeText(
                                     Name,
-                                    style: GoogleFonts.tiltNeon(color: Colors.black,fontSize: size.width*0.004,fontWeight: FontWeight.w600),
+                                    style: GoogleFonts.tiltNeon(color: Colors.black,fontSize: size.width*0.012,fontWeight: FontWeight.w600),
                                   ),
                                   Row(
                                     children: [
                                       SizedBox(
-                                        width: size.width*0.1,
+                                        width: size.width*0.2,
                                         child: AutoSizeText("${
                                             snapshot.data?.data()!["Messages"].length >0
                                                 ?
@@ -226,7 +225,7 @@ class _chatsystemState extends State<chatsystem> {
                                         }",
                                           style: GoogleFonts.tiltNeon(
                                               color: Colors.black.withOpacity(0.80),
-                                              fontSize: size.width*0.001,
+                                              fontSize: size.height*0.02,
                                               fontWeight: FontWeight.w500
                                           ),
                                           textAlign: TextAlign.left,
@@ -236,13 +235,12 @@ class _chatsystemState extends State<chatsystem> {
                                       readCount - count>0
                                           ?
                                       CircleAvatar(
-                                        minRadius: size.width*0.0007,
-                                        maxRadius: size.width*0.007,
+                                      radius: size.width*0.008,
                                         backgroundColor: Colors.green,
                                         child: AutoSizeText("${readCount - count}",
                                           style: GoogleFonts.tiltNeon(
                                               color: Colors.white,
-                                              fontSize: size.width*0.007,
+                                              fontSize: size.height*0.01,
                                               fontWeight: FontWeight.w500
                                           ),
                                           textAlign: TextAlign.left,
@@ -275,8 +273,7 @@ class _chatsystemState extends State<chatsystem> {
                               SizedBox(width: size.width*0.005,),
                               CircleAvatar(
                                 backgroundColor: const Color.fromRGBO(86, 149, 178, 1),
-                                maxRadius: size.width*0.015,
-                                minRadius: size.width*0.01,
+                               radius: size.width*0.015,
                                 backgroundImage: (snapshot.data!.data()!["image_URL"]!="null" && snapshot.data!.data()!["image_URL"]!=null)? NetworkImage(snapshot.data!.data()!["image_URL"]) : null,
                                 child: (snapshot.data?.data()!["image_URL"] == "null" || snapshot.data!.data()!["image_URL"] ==null)
                                     ?
@@ -284,7 +281,7 @@ class _chatsystemState extends State<chatsystem> {
                                   usermodel["Message_channels"][index].toString().split(" ")[6].substring(0, 1),
                                   style: GoogleFonts.tiltNeon(
                                       color: Colors.black,
-                                      fontSize: size.height * 0.03,
+                                      fontSize: size.height * 0.035,
                                       fontWeight: FontWeight.w600),
                                 )
                                     : null,
@@ -297,13 +294,13 @@ class _chatsystemState extends State<chatsystem> {
                                 children: [
                                   AutoSizeText(
                                   usermodel["Message_channels"][index],
-                                    style: GoogleFonts.tiltNeon(color: Colors.black,fontSize: size.width*0.004,fontWeight: FontWeight.w600),
+                                    style: GoogleFonts.tiltNeon(color: Colors.black,fontSize: size.width*0.012,fontWeight: FontWeight.w600),
                                   ),
                                   Row(
                                     children: [
 
                                       SizedBox(
-                                        width: size.width*0.1,
+                                        width: size.width*0.15,
                                         child: AutoSizeText("${
                                             snapshot.data?.data()!["Messages"].length >0
                                                 ?
@@ -319,7 +316,7 @@ class _chatsystemState extends State<chatsystem> {
                                         }",
                                           style: GoogleFonts.tiltNeon(
                                               color: Colors.black.withOpacity(0.80),
-                                              fontSize: size.width*0.006,
+                                            fontSize: size.height*0.02,
 
                                           ),
                                           textAlign: TextAlign.left,
@@ -330,12 +327,11 @@ class _chatsystemState extends State<chatsystem> {
                                           ?
                                       CircleAvatar(
                                         backgroundColor: Colors.green,
-                                        minRadius: size.width*0.0007,
-                                        maxRadius: size.width*0.007,
+                                        radius: size.width*0.008,
                                         child: AutoSizeText("${readCount - count}",
                                           style: GoogleFonts.tiltNeon(
                                               color: Colors.white,
-                                              fontSize: size.width*0.007,
+                                              fontSize: size.height*0.01,
                                               fontWeight: FontWeight.w500
                                           ),
                                           textAlign: TextAlign.left,
